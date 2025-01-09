@@ -1,0 +1,213 @@
+site_name: winsonYe's Wiki
+site_description: 厚积薄发
+site_url: https://xxxx2077.github.io/
+repo_url: https://github.com/xxxx2077/winsonYe_Wiki
+#remote_name: linyuxuanlin/Wiki_MkDocs
+edit_uri: edit/main/docs/ # 编辑按钮的url
+
+theme:
+  name: material
+  font: #false # 国内网络访问 Google 源可能会有问题
+    text: "Noto Sans SC - local"
+    #code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: light)" # 检查用户系统配置是否为亮色
+      scheme: default # 亮色模式
+      primary: white # 基本颜色
+      accent: purple # 按钮等互动块的颜色
+      toggle:
+        icon: material/eye
+        name: 切换暗色模式
+    - media: "(prefers-color-scheme: dark)" # 检查用户系统配置是否为暗色
+      scheme: slate # 暗色模式
+      primary: black # 基本颜色
+      accent: blue # 按钮等互动块的颜色
+      toggle:
+        icon: material/eye-outline
+        name: 切换亮色模式
+  language: zh
+  logo: img/logo-zip.png #https://cos.ap-guangzhou.myqcloud.com/wiki-media-1253965369/doc/logo-zip.png
+  favicon: img/logo.svg #https://cos.ap-guangzhou.myqcloud.com/wiki-media-1253965369/doc/logo.svg #https://cos.ap-guangzhou.myqcloud.com/wiki-media-1253965369/doc/logo-zip.png
+  features:
+    - content.code.copy # 代码块复制按钮
+    - content.action.edit # 文章编辑按钮
+    #- navigation.instant # Instant loading，像个单页应用
+    - navigation.tracking # Anchor tracking
+    - navigation.tabs # 导航栏
+    - navigation.footer # 上一篇 / 下一篇导航按钮
+    #- navigation.tabs.sticky # 导航栏不随页面滚动隐藏
+    - navigation.sections # 侧边栏分组显示
+    #- navigation.expand # 导航栏自动展开
+    - navigation.indexes # 组标题有专属页面
+    - toc.follow # 目录自动跟随
+    - navigation.top # 返回顶部按钮
+    - search.suggest # 搜索推荐
+    #- navigation.prune # 导航修剪，仅渲染可见链接，优化文档数量超过100的站点（实验），会导致页面间跳转速度变慢
+    #- search.highlight
+  icon:
+    repo: material/github
+    #edit: material/pencil
+
+plugins:
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      languages:
+        - locale: zh
+          default: true
+          name: 简体中文
+          build: true
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+      cache_safe: true
+      js_files:
+        - javascripts/mathjax.js
+        - javascripts/tex-mml-chtml.js
+        - javascripts/embed.js
+      css_files:
+        - stylesheets/extra.css
+  - rss:
+      abstract_chars_count: -1 # -1 for full content
+      #categories:
+      # - tags
+      #comments_path: "#__comments"
+      date_from_meta:
+        as_creation: "date"
+        #as_update: False
+        datetime_format: "%Y-%m-%d %H:%M"
+      enabled: True
+      feed_ttl: 1440
+      image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Feed-icon.svg/128px-Feed-icon.svg.png
+      length: 1000
+      pretty_print: True
+      match_path: "(zh|blog)/.*"
+      url_parameters:
+        utm_source: "documentation"
+        utm_medium: "RSS"
+        utm_campaign: "feed-syndication"
+  - blog:
+      blog_dir: .
+      blog_toc: true
+      post_date_format: full
+      archive_toc: true
+      categories_toc: true
+      pagination_format: "$link_first $link_previous ~2~ $link_next $link_last"
+      pagination_keep_content: true
+      draft_if_future_date: true
+  #TODO: make it runable
+  # - git-revision-date-localized: # 页面下方创建和修改时间
+  #     enable_creation_date: true
+  #     type: timeago
+  # - glightbox # 图片放大
+  # - tags # 添加给单个文档添加tag标签
+  # - statistics: # 统计页面字数、代码行数、阅读时间
+  #     page_read_time: false
+  #     page_check_metadata: comments
+  #     page_template: "page_template/page_statistics.html"
+
+
+extra:
+  alternate:
+    - name: 简体中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
+  generator: false
+  analytics:
+    provider: google
+    # TODO: modify
+    property: G-QBB3SQMGLN # 如果克隆我的站点，请把这串代码改成你自己的
+  mathjax: true
+  # TODO: modify
+  social:
+    - name: 友链 & 导航站
+      link: https://nav.wiki-power.com/
+      icon: fontawesome/regular/address-book
+    - name: 书摘
+      link: http://digest.wiki-power.com/
+      icon: fontawesome/regular/bookmark
+    - name: 资源仓库
+      link: https://github.com/linyuxuanlin/File-host
+      icon: fontawesome/regular/file-lines
+
+copyright: Copyright &copy; 2025 winsonYe
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - mdx_truly_sane_lists
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js
+  - javascripts/mathjax.js #https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/latest.min.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - javascripts/tex-mml-chtml.js #https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/embed.js # https://viewer.altium.com/client/static/js/embed.js
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - 开发: 
+    - 计算机基础:
+      # - 操作系统
+      # - 计算机网络
+      # - 计算机组成原理
+      # - 数据结构与算法
+      - Linux: computer_basic/Linux.md 
+      - Git: computer_basic/Git.md
+    - 前端开发:
+      - WebAssembly: software_development/frontend/WebAssembly.md
+    - 后端开发: 
+      - MySQL: software_development/backend/MySQL.md
+      - Redis: software_development/backend/Redis.md
+      - Kafka: software_development/backend/Kafka.md
+      - 消息队列: software_development/backend/MessageQueue.md
+      # - 分布式系统
+      - DevOps:
+        - Docker: software_development/backend/DevOps/Docker.md
+        # - k8s
+        # - tomcat
+      - 语言: 
+        - C++: software_development/backend/language/C++.md
+        - Rust: software_development/backend/language/Rust.md
+        - Java: software_development/backend/language/Java.md
+        - Go: software_development/backend/language/Go.md
+      - 面经: software_development/backend/interview_experiences.md      
+      - 项目:
+        - 工程问题: software_development/backend/Project/project_knowledge.md      
+        - 逸仙东华资源共享平台: software_development/backend/Project/逸仙东华/project_review.md
+    - 软件测试: 
+      - 理论知识: software_development/software_test/software_test_theory.md
+  - 算法题: 
+    - 算法基础: algorithm/algorithm_basic.md
+    - leetcode刷题笔记: algorithm/leetcode.md
+  - Blog:
+    #TODO: think how to collect in a dir
+    - blog/index.md
+  - 杂谈:
+    - Mac的一些问题: util/Mac.md
+  - About: about.md
+ 
