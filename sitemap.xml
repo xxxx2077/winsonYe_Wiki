@@ -595,6 +595,12 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://xxxx2077.github.io/computer_basic/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     </url>
     <url>
+        <loc>https://xxxx2077.github.io/configuration/markdown/</loc>
+        <lastmod>2025-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://xxxx2077.github.io/configuration/markdown/"/>
+    </url>
+    <url>
         <loc>https://xxxx2077.github.io/software_development/backend/Kafka/</loc>
         <lastmod>2025-01-10</lastmod>
         <changefreq>daily</changefreq>
