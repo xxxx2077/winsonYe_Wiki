@@ -143,7 +143,7 @@ let world = &s[6..11];
 
 
 
-![img](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/language/Rust.assets/v2-69da917741b2c610732d8526a9cc86f5_1440w.jpg)
+![img](/software_development/backend/language/Rust.assets/v2-69da917741b2c610732d8526a9cc86f5_1440w.jpg)
 
 字符串字面值：
 
@@ -254,7 +254,7 @@ fn main() {
  }
 ```
 
-上面定义的 `File` 结构体在内存中的排列如下图所示： ![img](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/language/Rust.assets/v2-8cc4ed8cd06d60f974d06ca2199b8df5_1440w.png)
+上面定义的 `File` 结构体在内存中的排列如下图所示： ![img](/software_development/backend/language/Rust.assets/v2-8cc4ed8cd06d60f974d06ca2199b8df5_1440w.png)
 
 从图中可以清晰地看出 `File` 结构体两个字段 `name` 和 `data` 分别拥有底层两个 `[u8]` 数组的所有权（`String` 类型的底层也是 `[u8]` 数组），通过 `ptr` 指针指向底层数组的内存地址，这里你可以把 `ptr` 指针理解为 Rust 中的引用类型。
 
@@ -339,7 +339,7 @@ fn main() {
 
 > 有点像c++里的std::move
 
-![s1 moved to s2](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/language/Rust.assets/v2-3ec77951de6a17584b5eb4a3838b4b61_1440w.jpg)
+![s1 moved to s2](/software_development/backend/language/Rust.assets/v2-3ec77951de6a17584b5eb4a3838b4b61_1440w.jpg)
 
 #### 【重点】什么时候会发生所有权转移？
 
@@ -441,7 +441,7 @@ fn takes_and_gives_back(a_string: String) -> String { // a_string 进入作用�
 - 同一时刻，你只能拥有要么一个可变引用，要么任意多个不可变引用
 - 引用必须总是有效的
 
-![&String s pointing at String s1](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/language/Rust.assets/v2-fc68ea4a1fe2e3fe4c5bb523a0a8247c_1440w.jpg)
+![&String s pointing at String s1](/software_development/backend/language/Rust.assets/v2-fc68ea4a1fe2e3fe4c5bb523a0a8247c_1440w.jpg)
 
 注意，引用的作用域 `s` 从创建开始，一直持续到它最后一次使用的地方，这个跟变量的作用域有所不同，变量的作用域从创建持续到某一个花括号 `}`
 
@@ -699,7 +699,7 @@ cargo生成文件简要介绍：
 
 #### cargo.toml
 
-![image-20241024125135908](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/language/Rust.assets/image-20241024125135908-9745499.png)
+![image-20241024125135908](/software_development/backend/language/Rust.assets/image-20241024125135908-9745499.png)
 
 源代码放在src目录下
 

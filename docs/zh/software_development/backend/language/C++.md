@@ -26,7 +26,7 @@
 
 ### 多态实现原理
 
-![image-20240928214128527](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/C++.assets/image-20240928214128527.png)
+![image-20240928214128527](/software_development/backend/C++.assets/image-20240928214128527.png)
 
 #### 静态绑定
 
@@ -57,7 +57,7 @@ int main(){
 
 `objdump -t 程序名`查看符号表
 
-![image-20240928204549115](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/C++.assets/image-20240928204549115.png) 
+![image-20240928204549115](/software_development/backend/C++.assets/image-20240928204549115.png) 
 
 由上图可见，sum函数名经修饰后分别为`__ZN1A3sumEdd`和`__ZN1A3sumEii`
 
@@ -132,7 +132,7 @@ int main(){
 
 输出结果
 
-![image-20240928210621628](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/C++.assets/image-20240928210621628.png)
+![image-20240928210621628](/software_development/backend/C++.assets/image-20240928210621628.png)
 
 ## 实战
 

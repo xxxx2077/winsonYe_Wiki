@@ -274,7 +274,7 @@ public:
 
 本题思路大致如下图：
 
-![fig1](/Users/t/Desktop/xxxx2077.github.io/docs/algorithm/leetcode.assets/54_fig1.png)
+![fig1](leetcode.assets/54_fig1.png)
 
 ```C++
 class Solution {
@@ -3883,7 +3883,7 @@ public:
 
 再来看后序遍历，先序遍历是中左右，后序遍历是左右中，那么我们只需要调整一下先序遍历的代码顺序，就变成中右左的遍历顺序，然后在反转result数组，输出的结果顺序就是左右中了，如下图：
 
-![前序到后序](/Users/t/Desktop/xxxx2077.github.io/docs/algorithm/leetcode.assets/20200808200338924.png)
+![前序到后序](leetcode.assets/20200808200338924.png)
 
 ```C++
 /**
@@ -5023,7 +5023,7 @@ public:
 
 具体算法如下图：
 
-![236.png](/Users/t/Desktop/xxxx2077.github.io/docs/algorithm/leetcode.assets/1681546069-BZfraI-236.png)
+![236.png](leetcode.assets/1681546069-BZfraI-236.png)
 
 解释一下边界条件：
 
@@ -5798,7 +5798,7 @@ if(condition)
 }
 ```
 
-![77.组合](/Users/t/Desktop/xxxx2077.github.io/docs/algorithm/leetcode.assets/20201123195223940.png)
+![77.组合](leetcode.assets/20201123195223940.png)
 
 ```C++
 class Solution {
@@ -5847,7 +5847,7 @@ for(int i = startIndex; i <= n - (k - path.size()) + 1; i++){
 }
 ```
 
-![77.组合4](/Users/t/Desktop/xxxx2077.github.io/docs/algorithm/leetcode.assets/20210130194335207.png)
+![77.组合4](leetcode.assets/20210130194335207.png)
 
 
 

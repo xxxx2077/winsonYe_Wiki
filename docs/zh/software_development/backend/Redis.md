@@ -355,7 +355,7 @@ String + Json 和 Hash都能缓存对象
 
 #### 命令
 
-![image-20241031220950726](/Users/t/Desktop/xxxx2077.github.io/docs/software_development/backend/Redis.assets/image-20241031220950726.png)
+![image-20241031220950726](Redis.assets/image-20241031220950726.png/)
 
 压缩列表 or 跳表
 
