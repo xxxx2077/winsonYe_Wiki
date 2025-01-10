@@ -121,21 +121,21 @@ extra:
       lang: en
   generator: false
   analytics:
-    provider: google
-    # TODO: modify
-    property: G-QBB3SQMGLN # 如果克隆我的站点，请把这串代码改成你自己的
+    # provider: google
+    # # TODO: modify
+    # property: G-QBB3SQMGLN # 如果克隆我的站点，请把这串代码改成你自己的
   mathjax: true
   # TODO: modify
   social:
-    - name: 友链 & 导航站
-      link: https://nav.wiki-power.com/
-      icon: fontawesome/regular/address-book
-    - name: 书摘
-      link: http://digest.wiki-power.com/
-      icon: fontawesome/regular/bookmark
-    - name: 资源仓库
-      link: https://github.com/linyuxuanlin/File-host
-      icon: fontawesome/regular/file-lines
+    # - name: 友链 & 导航站
+    #   link: https://nav.wiki-power.com/
+    #   icon: fontawesome/regular/address-book
+    # - name: 书摘
+    #   link: http://digest.wiki-power.com/
+    #   icon: fontawesome/regular/bookmark
+    # - name: 资源仓库
+    #   link: https://github.com/linyuxuanlin/File-host
+    #   icon: fontawesome/regular/file-lines
 
 copyright: Copyright &copy; 2025 winsonYe
 
@@ -203,7 +203,124 @@ nav:
       - 理论知识: software_development/software_test/software_test_theory.md
   - 算法题: 
     - 算法基础: algorithm/algorithm_basic.md
-    - leetcode刷题笔记: algorithm/leetcode.md
+    - leetcode刷题笔记:
+      - 数组:
+        - algorithm/704 二分查找.md
+        - algorithm/27 移除元素.md
+        - algorithm/977 有序数组的平方.md
+        - algorithm/209 长度最小的子数组.md
+        - algorithm/54 螺旋矩阵.md
+        - algorithm/59 螺旋矩阵II.md
+        - algorithm/区间和.md
+        - algorithm/53 最大子数组和.md
+        - algorithm/56 合并区间.md
+        - algorithm/189 轮转数组.md
+        - algorithm/238 除自身以外数组的乘积.md
+        - algorithm/41 缺失的第一个正数.md
+        - algorithm/数组总结.md
+      - 链表:
+        - algorithm/203 移除链表元素.md
+        - algorithm/707 设计链表.md
+        - algorithm/206 反转链表.md
+        - algorithm/24 两两交换链表中的节点.md
+        - algorithm/19 删除链表的第N个节点.md
+        - algorithm/160 相交链表.md
+        - algorithm/141 环形链表.md
+        - algorithm/142 环形链表II.md
+        - algorithm/21 合并两个升序链表.md
+        - algorithm/23 合并K个升序链表.md
+        - algorithm/25 K个一组翻转链表.md
+      - 双指针:
+        - algorithm/283 移动零.md
+        - algorithm/128 最长连续序列.md
+        - algorithm/11盛最多水的容器.md
+        - algorithm/15 三数之和.md
+        - algorithm/42 接雨水.md
+      - 矩阵:
+        - algorithm/73 矩阵置零.md
+        - algorithm/48 旋转图像.md
+        - algorithm/240 搜索二维矩阵II.md
+      - 滑动窗口:
+        - algorithm/3 无重复字符的最长子串.md
+        - algorithm/438 找到字符串中的所有字母异位词.md
+        - algorithm/239 滑动窗口的最大值.md
+        - algorithm/76 最小覆盖子串.md
+      - 子串:
+        - algorithm/560 和为k的子数组.md
+      - 二叉树:
+        - 二叉树遍历:
+          - algorithm/二叉树遍历.md
+        - 进阶二叉树:
+          - algorithm/226 翻转二叉树.md
+          - algorithm/101 对称二叉树.md
+          - algorithm/543 二叉树的直径.md
+          - algorithm/108 将有序数组转换为二叉搜索树.md
+          - algorithm/98 验证二叉搜索树.md
+          - algorithm/230 二叉搜索树第k小的元素.md
+          - algorithm/114 二叉树展开为链表.md
+          - algorithm/105 从前序与中序遍历构造二叉树.md
+          - algorithm/437 路径之和III.md
+          - algorithm/236 二叉树的最近公共祖先.md
+          - algorithm/124 二叉树中的最大路径和.md
+        - 二叉树总结:
+          - algorithm/二叉树总结.md
+      - 哈希表:
+        - algorithm/1 两数之和.md
+        - algorithm/49 字母异位词分组.md
+      - 回溯问题:
+        - algorithm/77 组合.md
+        - algorithm/39 组合总和II.md
+        - algorithm/216 组合总和III.md
+        - algorithm/46 全排列.md
+        - algorithm/17 电话号码的字母组合.md
+        - algorithm/78 子集.md
+
+      - 贪心:
+        - algorithm/121 买卖股票的最佳时机.md
+        - algorithm/55 跳跃游戏.md
+        - algorithm/45 跳跃游戏II.md
+        - algorithm/763 划分字母区间.md
+      - 动态规划:
+        - 基础题:
+          - algorithm/509 斐波那契数.md
+          - algorithm/70 爬楼梯.md
+          - algorithm/746 使用最小花费爬楼梯.md
+          - algorithm/62 不同路径.md
+          - algorithm/63 不同路径II.md
+          - algorithm/343 整数划分.md
+          - algorithm/96 不同的搜索树.md
+        - 子序列系列:
+          - algorithm/300 最长递增子序列.md
+          - algorithm/674 最长连续子序列.md
+          - algorithm/718 最长重复子数组.md
+          - algorithm/1143 最长公共子序列.md
+      - 模拟题:
+        - algorithm/146 LRU缓存.md
+      - 待分类:
+        - algorithm/22 括号生成.md
+        - algorithm/79 单词搜索.md
+        - algorithm/84 柱状图最大的矩形.md
+        - algorithm/85 最大矩形.md
+        - algorithm/112 路径总和.md
+        - algorithm/200 岛屿数量.md
+        - algorithm/209 长度最小的子数组.md
+        - algorithm/234 回文链表.md
+        - algorithm/279 完全平方数.md
+        - algorithm/415 字符串相加（大数加法）.md
+        - algorithm/470 用rand7() 实现rand10().md
+        - algorithm/503 下一个更大元素II.md
+        - algorithm/547 省份数量.md
+        - algorithm/684 冗余连接.md
+        - algorithm/739 每日温度.md
+        - algorithm/912 排序数组.md
+      - 刷题总结:
+        - algorithm/刷题总结.md
+      - STL:
+        - algorithm/STL.md
+
+
+
+        
   - Blog:
     #TODO: think how to collect in a dir
     - blog/index.md
