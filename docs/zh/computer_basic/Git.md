@@ -21,7 +21,7 @@ https://www.runoob.com/git/git-tutorial.html
 
 ## 暂存区、工作区和版本库的关系
 
-![img](/computer_basic/Git.assets/1352126739_7909.jpg)
+![img](../../computer_basic/Git.assets/1352126739_7909.jpg)
 
 - 图中左侧为工作区，右侧为版本库。在版本库中标记为 "index" 的区域是暂存区（stage/index），标记为 "master" 的是 master 分支所代表的目录树。
 - 图中我们可以看出此时 "HEAD" 实际是指向 master 分支的一个"游标"。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。

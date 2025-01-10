@@ -521,7 +521,7 @@ for i, r := range "Hello, 世界" {
 
 ```
 
-![img](/software_development/backend/language/Go.assets/ch3-05.png)
+![img](../../../../software_development/backend/language/Go.assets/ch3-05.png)
 
 2. **[]rune类型和string类型转换**
 
@@ -577,7 +577,7 @@ Usage:
 
 一个字符串s和对应的子字符串切片s[7:]共享相同内存，如下图
 
-![img](/software_development/backend/language/Go.assets/ch3-04.png)
+![img](../../../../software_development/backend/language/Go.assets/ch3-04.png)
 
 ##### 字符串相关包
 
@@ -817,7 +817,7 @@ func main() {
 //output: 3 8
 ```
 
-![img](/software_development/backend/language/Go.assets/ch4-01.png)
+![img](../../../../software_development/backend/language/Go.assets/ch4-01.png)
 
 如果切片操作超出cap(s)的上限将导致一个panic异常，但是超出len(s)则是意味着扩展了slice，因为新slice的长度会变大：
 
@@ -2403,7 +2403,7 @@ var w io.Writer
 
 在Go语言中，变量总是被一个定义明确的值初始化，即使接口类型也不例外。对于一个接口的零值就是它的类型和值的部分都是nil（图7.1）。
 
-![img](/software_development/backend/language/Go.assets/ch7-01.png)
+![img](../../../../software_development/backend/language/Go.assets/ch7-01.png)
 
 一个接口值基于它的动态类型被描述为空或非空，所以这是一个空的接口值。你可以通过使用w==nil或者w!=nil来判断接口值是否为空。调用一个空接口值上的任意方法都会产生panic:
 
@@ -2423,7 +2423,7 @@ w = os.Stdout
 
 > os.Stdout是一个变量，类型为*os.FIle。
 
-![img](/software_development/backend/language/Go.assets/ch7-02.png)
+![img](../../../../software_development/backend/language/Go.assets/ch7-02.png)
 
 调用一个包含`*os.File`类型指针的接口值的Write方法，使得`(*os.File).Write`方法被调用。这个调用输出“hello”。
 
@@ -2450,7 +2450,7 @@ var x interface{} = time.Now()
 
 结果可能和图7.4相似。从概念上讲，不论接口值多大，动态值总是可以容下它。（这只是一个概念上的模型；具体的实现可能会非常不同）
 
-![img](/software_development/backend/language/Go.assets/ch7-04.png)
+![img](../../../../software_development/backend/language/Go.assets/ch7-04.png)
 
 #### 接口使用注意事项
 

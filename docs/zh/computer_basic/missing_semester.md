@@ -82,7 +82,7 @@ r为read，w为write，x为execute，-表示没有这个权限
 - 目录：read为“是否能查看目录内的文件，是否允许查看文件列表”，write为“是否允许在目录中重命名、创建或删除文件”，execute是搜索权限，“你是否被允许进入该目录”，如果没有搜索权限，无法对当前目录使用cd
   - 如果对文件有w权限，但是对目录没有w权限，那么不能删除这个文件
 
-![image-20241219160808987](/computer_basic/missing_semester.assets/image-20241219160808987.png)
+![image-20241219160808987](../../computer_basic/missing_semester.assets/image-20241219160808987.png)
 
 
 
@@ -352,7 +352,7 @@ shell对空格非常敏感，空格用于隔开参数
 
 例如
 
-![image-20241224115910952](/computer_basic/missing_semester.assets/image-20241224115910952.png)
+![image-20241224115910952](../../computer_basic/missing_semester.assets/image-20241224115910952.png)
 
 得到不同结果
 
@@ -504,13 +504,13 @@ sudo ！！ #等价于sudo mkdir /mnt/new
 
 将一个命令的输出存储到一个变量中
 
-![image-20241228152048650](/computer_basic/missing_semester.assets/image-20241228152048650.png)
+![image-20241228152048650](../../computer_basic/missing_semester.assets/image-20241228152048650.png)
 
 <(command)
 
 将命令结果输出到临时文件
 
-![image-20241228200027669](/computer_basic/missing_semester.assets/image-20241228200027669.png)
+![image-20241228200027669](../../computer_basic/missing_semester.assets/image-20241228200027669.png)
 
 
 
@@ -539,11 +539,11 @@ done
 
 {}表示共有前缀
 
-![image-20241228200950520](/computer_basic/missing_semester.assets/image-20241228200950520.png)
+![image-20241228200950520](../../computer_basic/missing_semester.assets/image-20241228200950520.png)
 
 多个{}产生笛卡尔积
 
-![image-20241228200828557](/computer_basic/missing_semester.assets/image-20241228200828557.png)
+![image-20241228200828557](../../computer_basic/missing_semester.assets/image-20241228200828557.png)
 
 
 
