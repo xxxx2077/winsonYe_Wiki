@@ -22,6 +22,37 @@ A tutorial for Markdown & Markdown(Mkdocs of Material)
         ```
     ``` 
 
+**创建文章内锚点**
+```markdown
+## 这是第一个标题
+
+我要说一句话 [话的内容1](#话)
+
+// 如果锚点目标是标题，直接使用`#<标题名>`
+
+## 话
+
+我要说第二句话 [话的内容2](#sentence)
+
+第二句话是：<a id="sentence">这是一句话</a>
+
+```
+
+效果如下：
+
+**创建文章内锚点**
+## 这是第一个标题
+
+我要说一句话 [话的内容1](#话)
+
+// 如果锚点目标是标题，直接使用`#<标题名>`
+
+## 话
+
+我要说第二句话 [话的内容2](#sentence)
+
+第二句话是：<a id="sentence"></a>这是一句话
+
 ## Markdown for Mkdocs
 
 [官方链接](https://squidfunk.github.io/mkdocs-material/reference/admonitions/)
