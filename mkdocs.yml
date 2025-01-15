@@ -179,11 +179,12 @@ extra_css:
 nav:
   - Home: index.md
   - 开发: 
-    - 计算机基础:
+    - 计算机基础: computer_basic/index.md
       # - 操作系统
       # - 计算机网络
       # - 计算机组成原理
       # - 数据结构与算法
+      - Shell: computer_basic/shell.md
       - Linux: computer_basic/Linux.md 
       - Git: computer_basic/Git.md
     - 前端开发:

@@ -8,6 +8,10 @@
 
 ## shell
 
+### 什么是shell
+
+简单来说，shell是
+
 环境变量：运行shell前设定好的变量
 
 $PATH是路径变量
