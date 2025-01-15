@@ -179,7 +179,8 @@ extra_css:
 nav:
   - Home: index.md
   - 开发: 
-    - 计算机基础: computer_basic/index.md
+    - 计算机基础: 
+      - computer_basic/index.md
       # - 操作系统
       # - 计算机网络
       # - 计算机组成原理
