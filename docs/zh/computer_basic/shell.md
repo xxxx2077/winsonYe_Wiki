@@ -65,7 +65,7 @@ hello
 
 解答这个问题，我们需要引入一个概念：环境变量。
 
-!!! info title="环境变量"
+!!! info "环境变量"
 
     每个用户登录系统后，Linux 都会为其建立一个默认的工作环境，由一组环境变量定义，用户可以通过修改这些环境变量，来定制自己工作环境。在 Bash 中，可用 `env` 命令列出所有已定义的环境变量。通常，用户最关注的几个变量是：
 
@@ -166,6 +166,7 @@ drwxr-xr-x 1 root  root  4096 Jun 20  2019 var
 missing:~$ curl --head --silent google.com | grep --ignore-case content-length | cut --delimiter=' ' -f2
 219
 ```
+
 !!! info
 
     关于重定向，你可能会看到有`2>`等指令，这涉及到文件描述符和重定向的联系，这里提供一个链接供了解[文件描述符与重定向](https://blog.csdn.net/mocas_wang/article/details/127272407)
@@ -178,15 +179,18 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
 
 为此我们可以使用 `sudo` 命令。顾名思义，它的作用是让我们可以以 su（super user 或 root 的简写）的身份执行一些操作。 
 
-!!! tip title="非常容易犯的错误“
+!!! tip "非常容易犯的错误"
 
     有一件事情是我们必须作为根用户才能做的，那就是向 sysfs 文件写入内容。系统被挂载在 /sys 下，sysfs 文件则暴露了一些内核（kernel）参数。 因此，我们不需要借助任何专用的工具，就可以轻松地在运行期间配置系统内核。**注意 Windows 和 macOS 没有这个文件**
 
     例如，我们笔记本电脑的屏幕亮度写在 brightness 文件中，它位于
+
     ```bash
     /sys/class/backlight
     ```
+
     通过将数值写入该文件，我们可以改变屏幕的亮度。现在，蹦到您脑袋里的第一个想法可能是：
+
     ```bash
     $ sudo find -L /sys/class/backlight -maxdepth 2 -name '*brightness*'
     /sys/class/backlight/thinkpad_screen/brightness
@@ -195,6 +199,7 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
     An error occurred while redirecting file 'brightness'
     open: Permission denied
     ```
+
     出乎意料的是，我们还是得到了一个错误信息。毕竟，我们已经使用了 sudo 命令！关于 shell，有件事我们必须要知道。`|`、`>`、和 `<` 是通过 shell 执行的，而不是被各个程序单独执行。 因此，echo 等程序并不知道 `|` 的存在，它们只知道从自己的输入输出流中进行读写。
     
     也就是说，在shell的角度，`sudo echo`和`|`是分别执行的，`sudo echo`只知道自己需要切换为root用户，然后执行`echo`，这一个过程都在标准输入输出流进行。而`|`只知道自己需要从上一个程序输出流获取数据，将其转为本程序的输入流，`|`视角里自己一直是一个普通用户。
@@ -202,17 +207,20 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
     回到上面更改屏幕亮度命令执行的报错，为了能让 `sudo echo` 命令输出的亮度值写入 brightness 文件， shell (权限为当前用户) 会先尝试打开 brightness 文件，但此时操作 shell 的不是根（root）用户，所以系统拒绝了这个打开操作，提示无权限。
 
     明白这一点后，我们可以这样操作：
+
     ```bash
     $ echo 3 | sudo tee brightness
     ```
+
     此时打开 /sys 文件的是 tee 这个程序，并且该程序以 root 权限在运行，因此操作可以进行。 这样您就可以在 /sys 中愉快地玩耍了，例如修改系统中各种 LED 的状态（路径可能会有所不同）：
+
     ```bash
     $ echo 1 | sudo tee /sys/class/leds/input6::scrolllock/brightness
     ```
 
     关于tee用法，见[tee使用详解](#tee)
 
-### 操作大全
+## 操作大全
 
 写在前面，操作众多，不可能记住所有的命令。
 
@@ -235,7 +243,7 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
 
 接下来，将记录我的一些常用指令
 
-#### 目录操作
+### 目录操作
 
 `ls` 展示指定目录下包含哪些文件
 
@@ -244,17 +252,23 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
   - `-l`展示文件详细信息
 
 `cd` 将工作目录切换至指定目录
+
 - `ls`和`cd`公共参数：
   - `.` 当前工作目录
   - `..` 当前工作目录的父目录
   - `-` 上一个工作目录
 
 `mkdir`：新建文件夹
+
 `rmdir`：删除空目录
+
 `rm -r`：删除目录
+
 `pwd`：显示当前工作目录（绝对地址）
 
-!!! tip title="关于`ls -l`"
+`tree`：展示树状目录结构
+
+!!! tip "关于`ls -l`"
 
     在使用`ls -l`时，会出现`drwxr-xr-x`这一串信息
     ```shell
@@ -279,29 +293,40 @@ missing:~$ curl --head --silent google.com | grep --ignore-case content-length |
 
     如果要更改文件/目录的权限，使用`chmod`命令
 
-#### 文件操作
+### 文件操作
 
 `cp`：拷贝文件
+
 `mv`：重命名或移动文件
+
+`touch`：创建文件
+
 `rm`：删除文件（不支持删除目录，需要加参数`-r`支持递归删除）
+
 `chmod`：更改文件/目录权限 [chmod使用详解](#chmod)
+
 `cat`：打印文件内容（标准输出）
+
 `head`：显示文件的开头部分。默认情况下，head 会显示文件的前 10 行，但可以通过选项（`-n`）自定义显示的行数。
+
 `tail`：显示文件的结尾部分。默认情况下，tail 会显示文件的最后 10 行，也可以通过选项（`-n`）自定义显示的行数。
 
-#### 输出
+### 输出
+
 `echo`：打印参数内容
+
 `tee`：对执行其他命令打印出来的内容进行分流，一边存储到文件，一边标准输出 [tee使用详解](#tee)
 
-### 命令解释
+## 命令解释
 
 对于一些比较难的命令，将在此处进行简单解释
 
-#### `chmod`
+### `chmod`
 
 `chmod` 用于修改文件或目录的权限。`chmod` 是 "change mode"（改变模式）的缩写，主要作用是设置谁可以访问特定的文件或目录以及可以执行哪些操作（如读取、写入、执行）。
 
 **基本语法：**
+
 ```bash
 chmod [选项] 权限 文件/目录
 ```
@@ -320,6 +345,7 @@ chmod [选项] 权限 文件/目录
 - **文件/目录**：你要更改权限的文件或目录。
 
 **权限表示：**
+
 权限有两种表示方式：符号模式和数字模式。
 
 1. 符号模式：
@@ -355,6 +381,7 @@ chmod [选项] 权限 文件/目录
     - `chmod 644 file.txt`：所有者具有读、写权限，组和其他用户具有读权限。
 
 **示例：**
+
 1. **给文件所有者增加执行权限**：
    ```bash
    chmod u+x myscript.sh
@@ -367,13 +394,14 @@ chmod [选项] 权限 文件/目录
    ```bash
    chmod 777 myfile.txt
    ```
-#### `tee`
+### `tee`
 
 > tee是T型管的意思，一个进，两个出
 
 `tee` 用于将命令的标准输出同时发送到多个地方：既可以显示在终端（标准输出），也可以将其保存到一个或多个文件中。`tee` 命令就像一个“分流器”，将输入流复制并分别传递给多个目标。
 
 **基本语法：**
+
 ```bash
 command | tee [选项] 文件...
 ```
@@ -422,6 +450,7 @@ command | tee [选项] 文件...
    如果 `ls` 命令在执行过程中接收到中断信号，`tee` 会继续处理输入，而不会被中断。
 
 **典型用法：**
+
 - **日志记录**：你可以使用 `tee` 来记录命令输出到日志文件，同时继续在屏幕上查看输出。比如：
   ```bash
   some_command | tee output.log
@@ -430,4 +459,254 @@ command | tee [选项] 文件...
   ```bash
   ./myscript.sh | tee debug.log
   ```
+
+## Shell脚本编写
+
+### 变量
+
+变量赋值：`foo=bar`
+
+访问变量：`$foo`
+
+引用变量：Bash 中的字符串通过 `'` 和 `"` 分隔符来定义，但是它们的含义并不相同。以 `'` 定义的字符串为原义字符串，其中的变量不会被转义，而 `"` 定义的字符串会将变量值进行替换。
+
+```bash
+foo=bar
+echo "$foo"
+# 打印 bar
+echo '$foo'
+# 打印 $foo
+```
+### 控制结构
+
+shell支持if,while等控制结构
+
+Shell 的控制结构用于控制脚本的执行流程。它们可以根据条件决定是否执行某些命令，或在循环中反复执行命令。Shell 中的控制结构包括条件判断、循环结构、跳转语句等。以下是常见的 Shell 控制结构的介绍。
+
+#### 条件判断 (`if` 语句)
+`if` 语句用于根据给定条件执行不同的代码块。其基本结构如下：
+
+```bash
+if [ condition ]; then
+    # 如果条件为真，执行的命令
+elif [ another_condition ]; then
+    # 如果第二个条件为真，执行的命令
+else
+    # 如果没有条件为真，执行的命令
+fi
+```
+
+**例子：**
+
+```bash
+#!/bin/bash
+if [ $1 -gt 10 ]; then
+    echo "参数大于 10"
+else
+    echo "参数小于或等于 10"
+fi
+```
+
+- `-gt`：大于（greater than）
+- `-lt`：小于（less than）
+- `-eq`：等于（equal）
+- `-ne`：不等于（not equal）
+- `-ge`：大于等于（greater than or equal）
+- `-le`：小于等于（less than or equal）
+
+#### `case` 语句
+
+`case` 语句用于多个条件的匹配，类似于其他编程语言中的 `switch` 语句。
+
+```bash
+case "$variable" in
+    pattern1)
+        # 匹配 pattern1 执行的命令
+        ;;
+    pattern2)
+        # 匹配 pattern2 执行的命令
+        ;;
+    *)
+        # 默认情况
+        ;;
+esac
+```
+
+#### 例子：
+```bash
+#!/bin/bash
+echo "请输入数字"
+read num
+
+case $num in
+    1)
+        echo "你选择了 1"
+        ;;
+    2)
+        echo "你选择了 2"
+        ;;
+    *)
+        echo "未知选择"
+        ;;
+esac
+```
+
+#### **循环结构**
+
+##### `for` 循环
+`for` 循环用于在固定范围内反复执行命令。其基本结构如下：
+
+```bash
+for variable in list; do
+    # 对每个 list 中的元素执行的命令
+done
+```
+
+**例子：**
+```bash
+#!/bin/bash
+for i in 1 2 3 4 5; do
+    echo "循环第 $i 次"
+done
+```
+
+或者遍历文件目录：
+
+```bash
+for file in /path/to/directory/*; do
+    echo "文件名: $file"
+done
+```
+
+##### `for` 循环 (C 风格)
+```bash
+for (( i=0; i<10; i++ )); do
+    echo "i 的值是: $i"
+done
+```
+
+##### `while` 循环
+`while` 循环在条件为真时反复执行命令。
+
+```bash
+while [ condition ]; do
+    # 条件为真时执行的命令
+done
+```
+
+**例子：**
+```bash
+#!/bin/bash
+count=1
+while [ $count -le 5 ]; do
+    echo "这是第 $count 次循环"
+    ((count++))
+done
+```
+
+##### `until` 循环
+`until` 循环与 `while` 循环相似，但是它在条件为假时执行。
+
+```bash
+until [ condition ]; do
+    # 条件为假时执行的命令
+done
+```
+
+**例子：**
+```bash
+#!/bin/bash
+count=1
+until [ $count -gt 5 ]; do
+    echo "这是第 $count 次循环"
+    ((count++))
+done
+```
+
+#### 跳转控制 (`break` 和 `continue`)
+
+- `break`：跳出当前的循环，停止执行。
+- `continue`：跳过当前循环的剩余部分，直接进入下一次循环。
+
+**`break` 示例：**
+```bash
+#!/bin/bash
+for i in 1 2 3 4 5; do
+    if [ $i -eq 3 ]; then
+        break  # 跳出循环
+    fi
+    echo "第 $i 次循环"
+done
+```
+
+**`continue` 示例：**
+```bash
+#!/bin/bash
+for i in 1 2 3 4 5; do
+    if [ $i -eq 3 ]; then
+        continue  # 跳过当前循环
+    fi
+    echo "第 $i 次循环"
+done
+```
+
+#### **逻辑运算符**
+- `&&`：逻辑与（AND）。前一个命令成功时，才会执行下一个命令。
+- `||`：逻辑或（OR）。前一个命令失败时，才会执行下一个命令。
+
+**例子：**
+```bash
+#!/bin/bash
+# 使用 &&，只有第一个命令成功，第二个才会执行
+echo "开始测试" && echo "测试成功"
+
+# 使用 ||，只有第一个命令失败，第二个才会执行
+echo "开始测试" || echo "测试失败"
+```
+
+#### `exit` 语句
+`exit` 语句用于退出脚本并返回一个状态码。状态码 `0` 通常表示成功，非 `0` 状态码表示错误。
+
+```bash
+exit 0  # 正常退出，状态码为 0
+exit 1  # 异常退出，状态码为 1
+```
+
+**例子：**
+```bash
+#!/bin/bash
+if [ $1 -lt 10 ]; then
+    echo "输入参数小于 10"
+    exit 1
+fi
+echo "输入参数大于或等于 10"
+```
+
+##### `test` 命令 / `[ ]` 
+`test` 命令用于评估条件表达式，例如文件测试、字符串比较、数值比较等。
+
+```bash
+if test -f "file.txt"; then
+    echo "file.txt 存在"
+fi
+```
+
+等价于：
+
+```bash
+if [ -f "file.txt" ]; then
+    echo "file.txt 存在"
+fi
+```
+
+常见测试选项：
+- `-f`：检查文件是否存在且是普通文件。
+- `-d`：检查目录是否存在。
+- `-e`：检查文件是否存在。
+- `-z`：检查字符串是否为空。
+- `-n`：检查字符串是否非空。
+
+### 函数
+
+shell也支持函数
 
