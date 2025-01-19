@@ -460,6 +460,113 @@ command | tee [选项] 文件...
   ./myscript.sh | tee debug.log
   ```
 
+### `grep`
+
+基本语法
+
+```bash
+grep [选项] 模式 [文件...]
+```
+
+示例
+
+1. **在文件中查找固定字符串：**
+
+   ```bash
+   grep "hello" filename.txt
+   ```
+
+2. **递归查找目录中的所有文件：**
+
+   ```bash
+   grep -r "hello" /path/to/directory
+   ```
+
+3. **显示行号：**
+
+   ```bash
+   grep -n "hello" filename.txt
+   ```
+
+4. **忽略大小写：**
+
+   ```bash
+   grep -i "HELLO" filename.txt
+   ```
+
+5. **只输出匹配的文件名（如果有多个文件）：**
+
+   ```bash
+   grep -l "hello" file1.txt file2.txt
+   ```
+
+6. **反向匹配（显示不包含模式的行）：**
+
+   ```bash
+   grep -v "hello" filename.txt
+   ```
+
+7. **显示匹配前后的上下文行数：**
+
+   ```bash
+   grep -C 2 "hello" filename.txt  # 显示匹配行及其前后各2行
+   ```
+
+8. **结合正则表达式进行复杂匹配：**
+
+   ```bash
+   grep "he.llo\?" filename.txt  # 使用正则表达式匹配
+   ```
+
+9. **统计每个文件中匹配的行数：**
+
+   ```bash
+   grep -c "hello" filename.txt
+   ```
+
+10. **多模式匹配：**
+
+    ```bash
+    grep -e "pattern1" -e "pattern2" filename.txt  # 或者使用 egrep "pattern1|pattern2"
+    ```
+
+11. **静默模式，仅报告是否找到匹配：**
+
+    ```bash
+    grep -q "hello" filename.txt
+    ```
+
+12. **只打印匹配部分的颜色高亮：**
+
+    ```bash
+    grep --color=always "hello" filename.txt
+    ```
+
+常见选项
+
+- `-r, --recursive`: 递归地读取所有指定目录下的文件。
+- `-n, --line-number`: 在每行之前输出行号。
+- `-i, --ignore-case`: 忽略大小写差异。
+- `-l, --files-with-matches`: 只打印包含匹配行的文件名。
+- `-L, --files-without-match`: 只打印不包含匹配行的文件名。
+- `-v, --invert-match`: 反转匹配，选择不包含匹配的行。
+- `-C NUM, --context=NUM`: 打印匹配行以及上下文的行数。
+- `-A NUM, --after-context=NUM`: 打印匹配行之后的行数。
+- `-B NUM, --before-context=NUM`: 打印匹配行之前的行数。
+- `-c, --count`: 统计并打印每个文件中匹配的行数。
+- `-E, --extended-regexp`: 将模式解释为扩展正则表达式（ERE）。
+- `-F, --fixed-strings`: 将模式视为固定字符串而非正则表达式。
+- `-w, --word-regexp`: 仅匹配整个单词。
+- `-q, --quiet, --silent`: 静默模式，不输出任何信息到标准输出。
+
+高级用法
+
+- **与管道结合使用：** `grep` 常与其他命令通过管道组合使用，例如：
+
+  ```bash
+  cat filename.txt | grep "hello"
+  ```
+
 ## Shell脚本编写
 
 ### 变量
