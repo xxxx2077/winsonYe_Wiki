@@ -153,6 +153,7 @@ markdown_extensions:
   - pymdownx.betterem
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - def_list
   - attr_list
   - md_in_html
   - mdx_truly_sane_lists
@@ -179,7 +180,7 @@ extra_css:
 nav:
   - Home: index.md
   - 开发: 
-    - 计算机基础: 
+    - Before Coding: 
       - computer_basic/index.md
       # - 操作系统
       # - 计算机网络
@@ -212,7 +213,10 @@ nav:
     - 软件测试: 
       - 理论知识: software_development/software_test/software_test_theory.md
   - 算法题: 
-    - 算法基础: algorithm/algorithm_basic.md
+    - 算法基础: 
+      - algorithm/algorithm_basic/index.md
+      - 数组: algorithm/algorithm_basic/array.md
+      - 环状数组: algorithm/algorithm_basic/circleArray.md 
     - leetcode刷题笔记:
       - 数组:
         - algorithm/leetcode/704 二分查找.md
