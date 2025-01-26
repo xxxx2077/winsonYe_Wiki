@@ -28,7 +28,7 @@
 
 第二步： 找到可用（不超时）的IP地址，如下图，我们`ping`的时候发现IP地址20.205.243.166不行，我们就换一个日本的IP(20.27.177.113)
 
-![picture 0](.assets_IMG/server/IMG_20250121-173110005.png)  
+![picture 0](assets_IMG/server/IMG_20250121-173110005.png)  
 
 第三步：
 
@@ -49,6 +49,6 @@ vim /etc/hosts
 
 效果如下图：
 
-![picture 1](.assets_IMG/server/IMG_20250121-173454342.png)  
+![picture 1](assets_IMG/server/IMG_20250121-173454342.png)  
 
 现在，Github可以使用了

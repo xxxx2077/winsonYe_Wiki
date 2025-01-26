@@ -17,7 +17,7 @@ echo $SHELL
     
     vscode容易踩坑，如下图：
 
-    ![picture 0](.assets_IMG/terminal/IMG_20250121-174046574.png)  
+    ![picture 0](./assets_IMG/terminal/IMG_20250121-174046574.png)  
 
     很可能你的terminal选择的是bash，这样无论你怎么操作我给的步骤，`echo $SHELL`时都会输出`/bin/bash`，这是因为vscode把当前的SHELL锁死了
 

@@ -358,9 +358,11 @@ nav:
         - algorithm/leetcode/刷题总结.md
       - STL:
         - algorithm/leetcode/STL.md
-  - Configuration:
-    # - Vscode: configuration/vscode_configuration.md
+  - 配置:
     - Markdown: configuration/markdown.md
+    - 服务器: configuration/server.md
+    - 终端: configuration/terminal.md
+    - Vscode: configuration/vscode.md
         
   - Blog:
     #TODO: think how to collect in a dir
