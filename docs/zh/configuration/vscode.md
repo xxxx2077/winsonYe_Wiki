@@ -29,6 +29,7 @@
 - Better Comments
 - Error Lens
 - Vim
+- GitLens
 
 ## 语言相关
 
