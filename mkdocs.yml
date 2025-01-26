@@ -207,8 +207,10 @@ nav:
         - software_development/backend/Framework/index.md
         - RPC框架: software_development/backend/Framework/RPC.md
         - HTTP框架: software_development/backend/Framework/HTTP.md
-      - 网络架构:
-        - 
+      - 软件工程:
+        - software_development/backend/Software_Engineering/index.md
+        - 软件架构与系统设计: software_development/backend/Software_Engineering/system_design.md
+        - 设计模式: software_development/backend/Software_Engineering/design_patterns.md
       - Kafka: software_development/backend/Kafka.md
       - 消息队列: software_development/backend/MessageQueue.md
       # - 分布式系统
