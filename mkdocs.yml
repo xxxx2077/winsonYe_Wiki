@@ -187,11 +187,13 @@ nav:
       # - 计算机组成原理
       # - 数据结构与算法
       - Shell: computer_basic/shell.md
-      - Linux: computer_basic/Linux.md 
+      - Vim : computer_basic/vim.md
       - Git: computer_basic/Git.md
+      - Linux: computer_basic/Linux.md 
     - 前端开发:
       - WebAssembly: software_development/frontend/WebAssembly.md
     - 后端开发: 
+      - software_development/backend/index.md 
       - MySQL: software_development/backend/MySQL.md
       - Redis: software_development/backend/Redis.md
       - Kafka: software_development/backend/Kafka.md
@@ -212,14 +214,25 @@ nav:
         - 逸仙东华资源共享平台: software_development/backend/Project/逸仙东华/project_review.md
     - 软件测试: 
       - 理论知识: software_development/software_test/software_test_theory.md
-  - 算法题: 
-    - 算法基础: 
-      - algorithm/algorithm_basic/index.md
-      - 数组: algorithm/algorithm_basic/array.md
-      - 环状数组: algorithm/algorithm_basic/circleArray.md 
-      - 链表: algorithm/algorithm_basic/linkedList.md  
-      - 队列&栈: algorithm/algorithm_basic/queue&stack.md 
-      - 哈希表: algorithm/algorithm_basic/hashTable.md 
+  - 数据结构&算法: 
+    - 数据结构: 
+      - algorithm/data_strucutre/index.md
+      - 数组: algorithm/data_strucutre/array.md
+      - 环状数组: algorithm/data_strucutre/circleArray.md 
+      - 链表: algorithm/data_strucutre/linkedList.md  
+      - 队列&栈: algorithm/data_strucutre/queue&stack.md 
+      - 哈希表: algorithm/data_strucutre/hashTable.md 
+      - 二叉树和多叉树: algorithm/data_strucutre/tree.md
+      - 二叉堆: algorithm/data_strucutre/heap.md
+      - 图: algorithm/data_strucutre/graph.md
+    - 算法框架:
+      - algorithm/algorithm_summary/index.md
+      - 双指针:
+        - 双指针[链表]:
+          - algorithm/algorithm_summary/doublePointer_linkedList.md 
+        - 双指针[数组]:
+          - algorithm/algorithm_summary/doublePointer_array.md
+
     - leetcode刷题笔记:
       - 数组:
         - algorithm/leetcode/704 二分查找.md
