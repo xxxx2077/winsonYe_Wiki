@@ -1,5 +1,3 @@
-
-
 # Go
 
 ## Go语言特征
@@ -3247,16 +3245,6 @@ func Icon(name string) image.Image {
 
 竞争检查器会报告所有的已经发生的数据竞争。然而，它只能检测到运行时的竞争条件；并不能证明之后不会发生数据竞争。所以为了使结果尽量正确，请保证你的测试并发地覆盖到了你的包。
 
-### Go module
-
-#### Go module基础
-
-https://www.yuque.com/aceld/mo95lb/ovib08
-
-#### 引用本地包
-
-https://cloud.tencent.com/developer/article/1998266
-
 ## Go实现数据类型
 
 ### 栈
@@ -3346,7 +3334,74 @@ func main() {
 
 https://golang-china.github.io/gopl-zh/ch6/ch6-05.html
 
+## Go包管理
 
+包管理是Go非常重要的一环，为此我新开了一个chapter
+
+### Reference
+
+[【博客】Go包管理必知必会](https://learnku.com/go/t/27649)
+
+[【教程】Go打包和工具链教程](https://ebook.qicoder.com/go-practice/notes/%E7%AC%AC3%E7%AB%A0%20%E6%89%93%E5%8C%85%E5%92%8C%E5%B7%A5%E5%85%B7%E9%93%BE/01-%E6%89%93%E5%8C%85%E5%92%8C%E5%B7%A5%E5%85%B7%E9%93%BE.html)
+
+[【博客】Go 命令详解](https://doc.yonyoucloud.com/doc/wiki/project/go-command-tutorial/0.1.html)
+
+[【官网文档】如何创建拥有多个Go module项目](https://go.dev/doc/tutorial/workspaces)
+
+### 基础知识
+
+Go里面的包（package），简单来说，就是Go存放一组.go文件的目录。
+
+**所有的.go文件必须在第一行声明所属的包名，同一个目录下的所有.go文件必须声明同一个包名。**
+
+Go中的包分为库（Library，简称lib包）和可执行包（main包），区分两者非常简单：
+
+- lib包没有main.go，lib包内所有.go第一行都是`package + lib包名`
+- main包一定有main.go，main包内所有.go第一行都是`package main`
+
+Go编译器编译时，会寻找main包，接着寻找main包中的main.go文件。main.go是程序的入口，如果项目拥有main包且main.go文件，编译器会将main包编译为二进制可执行文件。
+
+**包内需要导出的函数和变量使用大写，否则小写**
+
+### Go module
+
+以前Go使用GOPATH来存放项目，非常麻烦。后面Go1.11推出了Go module包管理（类似于Java的Maven和Rust的cargo）
+
+现在我们基本都使用Go module（通常使用Go mod代称）
+
+#### Go module基础
+
+[Go module基础](https://www.yuque.com/aceld/mo95lb/ovib08)
+
+#### 创建Go module
+
+```bash
+mkdir <workplace>
+cd <workplace>
+go init <Go module Name>
+```
+
+`go build <filename>` 编译go module，如果没有加filename，默认寻找当前目录main.go
+
+`go run <filename>` 编译并运行某个go module，如果没有加filename，默认寻找当前目录main.go
+
+当前目录：`go build .` & `go run .`
+
+#### Go module导入包
+
+[Go module导入包](https://cloud.tencent.com/developer/article/1998266)
+
+#### 创建多个Go module的工作空间
+
+```bash
+go work init <mod name> 
+# 创建go.work文件，包含mod name所在go mod
+
+# 如果没有指定mod name，创建空的go.work
+
+go work use <mod name>
+# 将指定go mod添加到go.work
+```
 
 ## Go常用包
 

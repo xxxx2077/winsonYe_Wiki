@@ -211,11 +211,12 @@ nav:
         - software_development/backend/Software_Engineering/index.md
         - 软件架构与系统设计: software_development/backend/Software_Engineering/system_design.md
         - 设计模式: software_development/backend/Software_Engineering/design_patterns.md
-      - Kafka: software_development/backend/Kafka.md
-      - 消息队列: software_development/backend/MessageQueue.md
+        - DevOps:
+          - Docker: software_development/backend/Software_Engineering/DevOps/Docker.md
+      - 中间件:
+        - Kafka: software_development/backend/Middleware/Kafka.md
+        - 消息队列: software_development/backend/Middleware/MessageQueue.md
       # - 分布式系统
-      - DevOps:
-        - Docker: software_development/backend/DevOps/Docker.md
         # - k8s
         # - tomcat
       - 面经: 
@@ -223,6 +224,7 @@ nav:
       - 项目:
         - 工程问题: software_development/backend/Project/project_knowledge.md      
         - 逸仙东华资源共享平台: software_development/backend/Project/逸仙东华/project_review.md
+        - 抖音电商: software_development/backend/Project/tiktok_eCommerce.md
     - 软件测试: 
       - 理论知识: software_development/software_test/software_test_theory.md
   - 数据结构&算法: 
