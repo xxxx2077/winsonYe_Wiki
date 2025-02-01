@@ -3391,6 +3391,116 @@ go init <Go module Name>
 
 [Go module导入包](https://cloud.tencent.com/developer/article/1998266)
 
+##### `go get`与`go install`的区别
+
+[【stack overflow】go get与go install的区别](https://stackoverflow.com/questions/24878737/what-is-the-difference-between-go-get-and-go-install)
+
+[【官方文档】go get与go install的区别](https://tip.golang.org/doc/go1.16#modules)
+
+**简单总结**
+
+- 如果你需要管理项目的依赖，使用 `go get`。
+- 如果你需要安装工具或可执行文件，使用 `go install`。
+
+**1. `go get`**
+
+`go get` 主要用于下载和安装远程的 Go 包或模块，并将其添加到当前模块的依赖中。它会更新 `go.mod` 和 `go.sum` 文件。
+
+**主要功能：**
+
+- 下载远程包或模块。
+- 将依赖添加到 `go.mod` 文件中。
+- 安装包的可执行文件（如果包是 `main` 包）。
+
+**常用命令：**
+
+- 下载并添加依赖：
+  ```bash
+  go get example.com/package
+  ```
+- 下载指定版本的依赖：
+  ```bash
+  go get example.com/package@v1.2.3
+  ```
+- 更新依赖到最新版本：
+  ```bash
+  go get -u example.com/package
+  ```
+
+**注意事项：**
+
+- 从 Go 1.18 开始，`go get` 不再用于安装可执行文件（这是 `go install` 的职责），而是专注于管理依赖。
+- 如果下载的包是 `main` 包，`go get` 会将其编译并安装到 `$GOPATH/bin` 目录（如果设置了 `GOBIN` 环境变量，则安装到 `GOBIN` 目录）。
+
+---
+
+**2. `go install`**
+
+`go install` 用于编译并安装 Go 包或可执行文件。它不会修改 `go.mod` 或 `go.sum` 文件。
+
+**主要功能：**
+
+- 编译并安装指定的包或可执行文件。
+- 将生成的可执行文件安装到 `$GOPATH/bin` 或 `GOBIN` 目录。
+
+**常用命令：**
+
+- 安装当前目录下的包：
+  ```bash
+  go install
+  ```
+- 安装指定路径的包：
+  ```bash
+  go install example.com/package
+  ```
+- 安装指定版本的包（需要 Go 1.16+）：
+  ```bash
+  go install example.com/package@v1.2.3
+  ```
+
+**注意事项：**
+
+- `go install` 不会修改 `go.mod` 或 `go.sum` 文件，因此它不会影响项目的依赖管理。
+- 它主要用于安装工具或可执行文件，而不是管理项目依赖。
+
+---
+
+**主要区别**
+
+| 特性                | `go get`                          | `go install`                     |
+|---------------------|-----------------------------------|----------------------------------|
+| **功能**            | 下载依赖并更新 `go.mod` 文件       | 编译并安装可执行文件              |
+| **修改 `go.mod`**   | 是                                | 否                               |
+| **安装位置**        | `$GOPATH/bin` 或 `GOBIN`          | `$GOPATH/bin` 或 `GOBIN`         |
+| **适用场景**        | 管理项目依赖                      | 安装工具或可执行文件              |
+| **版本管理**        | 支持指定版本（`@v1.2.3`）          | 支持指定版本（`@v1.2.3`）         |
+| **Go 1.16+ 变化**   | 不再用于安装可执行文件             | 推荐用于安装可执行文件            |
+
+---
+
+**使用场景示例**
+
+**1. 使用 `go get` 管理依赖**
+
+假设你需要在项目中添加一个新的依赖：
+
+```bash
+go get github.com/gin-gonic/gin@v1.9.0
+```
+
+这会将 `gin` 添加到 `go.mod` 文件中，并下载指定版本。
+
+**2. 使用 `go install` 安装工具**
+
+假设你需要安装一个常用的 Go 工具，比如 `golangci-lint`：
+
+```bash
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+```
+
+这会将 `golangci-lint` 安装到 `$GOPATH/bin` 或 `GOBIN` 目录，而不会影响当前项目的依赖。
+
+
 #### 创建多个Go module的工作空间
 
 ```bash
