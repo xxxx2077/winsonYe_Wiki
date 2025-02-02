@@ -241,10 +241,8 @@ nav:
     - 算法框架:
       - algorithm/algorithm_summary/index.md
       - 双指针:
-        - 双指针[链表]:
-          - algorithm/algorithm_summary/doublePointer_linkedList.md 
-        - 双指针[数组]:
-          - algorithm/algorithm_summary/doublePointer_array.md
+        - 双指针[链表]: algorithm/algorithm_summary/double_pointer/linkedList.md 
+        - 双指针[数组]: algorithm/algorithm_summary/double_pointer/array.md
 
     - leetcode刷题笔记:
       - 数组:
