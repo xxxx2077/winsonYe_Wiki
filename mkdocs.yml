@@ -209,10 +209,14 @@ nav:
         - HTTP框架: software_development/backend/Framework/HTTP.md
       - 软件工程:
         - software_development/backend/Software_Engineering/index.md
-        - 软件架构与系统设计: software_development/backend/Software_Engineering/system_design.md
         - 设计模式: software_development/backend/Software_Engineering/design_patterns.md
-        - DevOps:
-          - Docker: software_development/backend/Software_Engineering/DevOps/Docker.md
+        - 软件架构与系统设计: 
+          - software_development/backend/Software_Engineering/system_design/index.md
+          - 微服务架构: 
+            - software_development/backend/Software_Engineering/system_design/microService/index.md
+            - 服务注册与服务发现: software_development/backend/Software_Engineering/system_design/microService/registry.md
+            - DevOps:
+              - Docker: software_development/backend/Software_Engineering/system_design/microService/DevOps/Docker.md
       - 中间件:
         - Kafka: software_development/backend/Middleware/Kafka.md
         - 消息队列: software_development/backend/Middleware/MessageQueue.md
