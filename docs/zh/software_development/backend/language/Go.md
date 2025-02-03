@@ -3346,6 +3346,8 @@ https://golang-china.github.io/gopl-zh/ch6/ch6-05.html
 
 [【博客】Go 命令详解](https://doc.yonyoucloud.com/doc/wiki/project/go-command-tutorial/0.1.html)
 
+[【博客】Go Module教程](https://www.yuque.com/aceld/mo95lb/ovib08)
+
 [【官网文档】如何创建拥有多个Go module项目](https://go.dev/doc/tutorial/workspaces)
 
 ### 基础知识
