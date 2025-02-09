@@ -247,10 +247,12 @@ nav:
       - 双指针:
         - 双指针[链表]: algorithm/algorithm_summary/double_pointer/linkedList.md 
         - 双指针[数组]: algorithm/algorithm_summary/double_pointer/array.md
-
     - leetcode刷题笔记:
+      - algorithm/leetcode/index.md
       - 数组:
-        - algorithm/leetcode/704 二分查找.md
+        - 二分查找:
+          - algorithm/leetcode/704 二分查找.md
+          - algorithm/leetcode/35 搜索插入位置.md
         - algorithm/leetcode/27 移除元素.md
         - algorithm/leetcode/977 有序数组的平方.md
         - algorithm/leetcode/209 长度最小的子数组.md
