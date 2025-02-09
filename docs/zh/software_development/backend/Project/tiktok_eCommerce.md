@@ -76,7 +76,7 @@ cwgo生成RPC项目结构为：
 
 **读取环境变量工具**
 
-- `godotenv`
+- [godotenv](https://github.com/joho/godotenv)
 
 ### 数据库使用
 
