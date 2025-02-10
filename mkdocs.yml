@@ -244,9 +244,9 @@ nav:
       - 图: algorithm/data_strucutre/graph.md
     - 算法框架:
       - algorithm/algorithm_summary/index.md
-      - 双指针:
-        - 双指针[链表]: algorithm/algorithm_summary/double_pointer/linkedList.md 
-        - 双指针[数组]: algorithm/algorithm_summary/double_pointer/array.md
+      - 链表: algorithm/algorithm_summary/linkedList.md 
+      - 数组: algorithm/algorithm_summary/array.md
+      - 哈希表: aalgorithm/algorithm_summary/hashTable.md
     - leetcode刷题笔记:
       - algorithm/leetcode/index.md
       - 数组:
