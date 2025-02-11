@@ -314,6 +314,10 @@ nav:
       - 哈希表:
         - algorithm/leetcode/1 两数之和.md
         - algorithm/leetcode/49 字母异位词分组.md
+        - algorithm/leetcode/242 有效的字母异位词.md
+        - algorithm/leetcode/349 两个数组的交集.md
+        - algorithm/leetcode/454 四数相加II.md
+        - algorithm/leetcode/15 三数之和.md
       - 回溯问题:
         - algorithm/leetcode/77 组合.md
         - algorithm/leetcode/39 组合总和II.md
