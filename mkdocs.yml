@@ -296,7 +296,10 @@ nav:
         - algorithm/leetcode/560 和为k的子数组.md
       - 二叉树:
         - 二叉树遍历:
-          - algorithm/leetcode/二叉树遍历.md
+          - algorithm/leetcode/144 前序遍历.md
+          - algorithm/leetcode/145 后序遍历.md
+          - algorithm/leetcode/90 中序遍历.md
+          - algorithm/leetcode/102 二叉树的层序遍历.md
         - 进阶二叉树:
           - algorithm/leetcode/226 翻转二叉树.md
           - algorithm/leetcode/101 对称二叉树.md
@@ -325,7 +328,6 @@ nav:
         - algorithm/leetcode/46 全排列.md
         - algorithm/leetcode/17 电话号码的字母组合.md
         - algorithm/leetcode/78 子集.md
-
       - 贪心:
         - algorithm/leetcode/121 买卖股票的最佳时机.md
         - algorithm/leetcode/55 跳跃游戏.md
