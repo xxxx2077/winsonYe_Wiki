@@ -8,11 +8,26 @@
 
 ## 知识点
 
+### 注册登录
+
+- [Bcrypt](https://www.cnblogs.com/flydean/p/15292400.html)
+- JWT
+- OAuth2
+- 微信扫码登录
+
 ### Elastic Search
+
+[ES倒排索引](https://mp.weixin.qq.com/s?__biz=MzUxODAzNDg4NQ==&mid=2247538041&idx=2&sn=8d38d4117584f696b09d070c8e39b73a&chksm=f98d11d3cefa98c5d90f8d6b0e47d31c9cfb8319a5d8e58e8dcf5c3b262584cb5224efdb7a02&scene=178&cur_album_id=3752960238937030659#rd)
 
 ### LRU
 
 LRU缓存是一种常见的缓存淘汰算法，当缓存达到其容量限制时，它会移除最近最少使用的项目。
+
+### minio
+
+[对象存储](https://cloud.google.com/learn/what-is-object-storage?hl=zh-CN)
+
+[为什么使用minio](https://www.cnblogs.com/FLY_DREAM/p/14587022.html)
 
 #### `OrderedDict`
 
