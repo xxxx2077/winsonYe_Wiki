@@ -605,7 +605,7 @@ Initial Commit
 
 ## Git操作大全
 
-### git init/git add/git commit
+### 基本使用
 
 目录就是工作区
 
@@ -626,7 +626,112 @@ git commit -m <message> #提交修改
 
 `git status`显示的就是暂存区的状态
 
+### 暂存区操作
 
+#### `git add`
+
+细粒度选择`git add`的内容
+
+```bash
+$ git add -p
+```
+
+对于每个差异块（hunk），Git 会提供几个选项让你选择如何处理这个块：
+
+- y: 将当前块添加到暂存区。
+- n: 跳过当前块，不添加到暂存区。
+- s: 将当前块分割成更小的部分（如果可能的话），以便你可以更精确地选择要添加的部分。
+- e: 手动编辑当前块，以选择具体的行进行添加。
+- d: 不再询问，跳过所有剩余的块。
+- q: 退出交互模式，停止处理剩余的块。
+
+#### `git restore --staged`
+
+**功能**：
+- **从暂存区移除更改**：`git restore --staged <file>` 命令用于将指定文件从暂存区移除（即取消暂存），但保留工作目录中的更改。这意味着文件的内容在工作目录中保持不变，但不会包含在下一次提交中。
+
+**应用场景**：
+- 当你已经将某些文件添加到暂存区，但后来决定不希望这些更改包含在当前提交中时，可以使用这个命令。
+- 这个命令特别适合当你想对一部分更改进行提交而暂时忽略其他更改时。
+
+**示例**
+
+1. 修改 `app.js` 并暂存：
+   ```sh
+   echo "console.log('Feature A');" >> app.js
+   git add app.js
+   ```
+
+2. 查看状态：
+   ```sh
+   git status
+   ```
+   输出示例：
+   ```
+   Changes to be committed:
+     (use "git restore --staged <file>..." to unstage)
+           modified:   app.js
+   ```
+
+3. 取消暂存 `app.js`：
+   ```sh
+   git restore --staged app.js
+   ```
+
+4. 再次查看状态：
+   ```sh
+   git status
+   ```
+   输出示例：
+   ```
+   Changes not staged for commit:
+     (use "git add <file>..." to update what will be committed)
+           modified:   app.js
+   ```
+
+#### `git rm --cached`
+
+**功能**：
+- **从暂存区和索引中移除文件**：`git rm --cached <file>` 命令用于从暂存区和 Git 的索引中移除文件，但保留该文件在工作目录中。换句话说，它会停止跟踪该文件，但不会删除工作目录中的实际文件。
+- 这个命令通常用于告诉 Git 不再跟踪某个文件，而不影响本地的工作副本。
+
+**应用场景**：
+- 当你有一个已经被 Git 跟踪的文件，但现在希望 Git 忽略它（例如，将它添加到 `.gitignore` 文件中），你可以使用 `git rm --cached` 来停止跟踪该文件。
+- 如果你不使用 `--cached` 选项，`git rm` 将不仅从 Git 索引中移除文件，还会删除工作目录中的文件。
+
+**示例**
+
+1. 创建一个配置文件并提交：
+   ```sh
+   echo '{"api_key": "12345"}' > config.local.json
+   git add config.local.json
+   git commit -m "Add local config file"
+   ```
+
+2. 停止跟踪 `config.local.json`：
+   ```sh
+   git rm --cached config.local.json
+   ```
+
+3. 更新 `.gitignore` 文件以避免未来再次跟踪该文件：
+   ```sh
+   echo "config.local.json" >> .gitignore
+   ```
+
+4. 查看状态：
+   ```sh
+   git status
+   ```
+   输出示例：
+   ```
+   Changes to be committed:
+     (use "git restore --staged <file>..." to unstage)
+           deleted:    config.local.json
+
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+           .gitignore
+   ```
 
 ### git diff
 
@@ -634,10 +739,10 @@ git commit -m <message> #提交修改
 
 git diff 有两个主要的应用场景。
 
-- 尚未缓存的改动：**git diff**
-- 查看已缓存的改动： **git diff --cached**
-- 查看已缓存的与未缓存的所有改动：**git diff HEAD**
-- 显示摘要而非整个 diff：**git diff --stat**
+- **git diff:** 当你在没有任何参数的情况下运行 git diff 时，默认情况下它会显示工作目录中尚未添加到暂存区（即未通过 git add）的更改。
+- **git diff --cached:** 查看已缓存的改动
+- **git diff HEAD:** 显示的是当前工作目录中的所有未提交的更改，包括已经暂存和未暂存的更改，与最近一次提交（HEAD）进行比较。
+- **git diff --stat：** 显示摘要而非整个 diff
 
 显示暂存区和工作区的差异:
 
@@ -658,10 +763,6 @@ $ git diff --staged [file]
 ```
 $ git diff [first-branch]...[second-branch]
 ```
-
-
-
-
 
 ### 回退操作
 
@@ -727,3 +828,28 @@ $ git reset --hard <commit_id> #commit_id不用写全，可以写前几位，能
 - Git提供了一个命令`git reflog`用来记录你的每一次命令
 - 通过该命令可获取commit_id
 
+## Git分支
+
+查看所有分支
+
+```bash
+$ git branch
+```
+
+添加分支
+
+```bash
+$ git checkout -b <branch_name>
+```
+
+切换分支
+
+```bash
+$ git checkout <branch_name>
+```
+
+删除分支
+
+```bash
+$ git branch -d <branch_name>
+```
