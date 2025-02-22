@@ -828,7 +828,7 @@ $ git reset --hard <commit_id> #commit_id不用写全，可以写前几位，能
 - Git提供了一个命令`git reflog`用来记录你的每一次命令
 - 通过该命令可获取commit_id
 
-## Git分支
+### Git分支
 
 查看所有分支
 
