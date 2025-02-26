@@ -58,7 +58,6 @@ RPC解决三个问题：
 
 ![picture 0](assets_IMG/RPC/IMG_20250128-202317834.png) 
 
-![picture 1](https://s3.51cto.com/oss/202202/14/93120cb64775791f2e63010c30f49dea2f4c82.webp)
 
 !!! Tip
 
@@ -70,13 +69,21 @@ RPC解决三个问题：
 
 1. **[IDL(interface description language)](#idl)：** IDL通过一种中立的方式来描述接口，使得在不同平台上运行的对象和用不同语言编写的程序可以相互通信
 
-2. **[生成代码](#生成代码)：** 通过编译器工具把IDL文件转换成语言对应的静态库
+2. **clinet/server stub**
+   
+   一段代码，负责将clinet/server的数据转换为rpc框架内使用的数据格式，包括两个部分：
 
-3. **[编解码](#序列化和反序列化协议)：** 从内存中表示到字节序列的转换称为「编码」，反之为「解码」，也常称为「序列化和反序列化」
+   1. **[生成代码](#生成代码)：** 这部份不需要我们写，通常通过RPC框架通过编译器工具把IDL文件转换成语言对应的静态库，
 
-4. **通信协议：** 规范了数据在网络中的传输内容和格式。除必须的请求/响应数据外，通常还会包含额外的元数据
+   2. **[编解码](#序列化和反序列化协议)：** 从内存中表示到字节序列的转换称为「编码」，反之为「解码」，也常称为「序列化和反序列化」
 
-5. **网络传输：** 通常基于成熟的网络库走TCP/UDP传输
+3. **通信协议：** 规范了数据在网络中的传输内容和格式。除必须的请求/响应数据外，通常还会包含额外的元数据。
+
+4. **网络传输：** 通常基于成熟的网络库走TCP/UDP传输
+
+![picture 2](assets_IMG/RPC/IMG_20250226-212000892.png)  
+
+![picture 3](assets_IMG/RPC/IMG_20250226-212057425.png)  
 
 ### IDL
 
@@ -109,7 +116,7 @@ IDL 全称是 Interface Definition Language，接口定义语言。
 
 以下是一个proto3文件
 
-```proto3
+```proto hl_lines="5-7"
 syntax = "proto3";
 
 package example;
@@ -135,7 +142,19 @@ message HelloResponse {
 
 4. 数字对应的是字段的Tag，唯一标识字段，因此Tag不可重用。
 
-!!! warning "删除字段"
+??? tip "service数据结构"
+
+    ```proto
+    service Greeter {
+      rpc SayHello (HelloRequest) returns (HelloResponse);
+    }
+    ```
+
+    service不是protobuf本身拥有的结构，而是对应rpc定义的服务接口，如果想要使用rpc，才使用service
+    
+    protobuf本质上只是一个和json类似的序列化协议
+
+??? warning "删除字段"
 
     如果要删除字段，新字段需要使用新的Tag。
     
@@ -207,12 +226,174 @@ Protobuf（Protocol Buffers）是由 Google 开发的一种序列化协议。它
 
 而跨语言平台的开源 RPC 框架主要有以下几种:
 
-- gRPC：Google 于 2015 年对外开源的跨语言 RPC 框架，支持多种语言。
+- [gRPC](#grpc)：Google 于 2015 年对外开源的跨语言 RPC 框架，支持多种语言。
 - Thrift：最初是由 Facebook 开发的内部系统跨语言的 RPC 框架，2007 年贡献给了 Apache 基金，成为 Apache 开源项目之一，支持多种语言。
 
 如果你的业务场景仅仅局限于一种语言的话，可以选择跟语言绑定的 RPC 框架中的一种；
 
 如果涉及多个语言平台之间的相互调用，就应该选择跨语言平台的 RPC 框架。
+
+### gRPC
+
+`grpc`以`tcp`作为网络传输协议，以`protobuf`作为二进制序列协议，基于`HTTP/2.0`实现。
+
+在`protobuf`定义基础上，添加了rpc服务对应的数据结构:
+
+- `service`：rpc服务，可以拥有多个服务
+- `rpc`：rpc服务里面的方法，一个服务可以拥有多个方法
+
+```proto hl_lines="5-7"
+syntax = "proto3";
+
+package example;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
+```
+
+grpc拥有四种rpc方法，详见[grpc进阶](https://grpc.io/docs/what-is-grpc/core-concepts/)
+
+## RPC实战
+
+### Go
+
+按这个教程[Go](https://grpc.io/docs/languages/go/quickstart/)走，基本可以实践
+
+基本思路就是：
+
+- 写proto3文件
+- 利用protoc和go的两个插件将.proto文件编译生成代码，生成的代码不用做任何修改，后缀为`<name>_rpc.pb.go`和`<name>_pb.go`
+- 生成的代码包含了service的接口，server端在server/server.go实现，client只需要调用生成的代码中的NewClinet函数
+
+???+ "go_package和package"
+
+    **go_package**
+
+    ```proto
+    option go_package = "github.com/wymli/bc_sns/dep/pb/go/enumx;enumx";
+    ```
+
+    这里逗号（；）后面是就是生成go代码时的package名, 前面是生成代码时，如果其他proto引用了这个proto，那么他们就会使用逗号（；）前面的作为go包路径
+
+    **package**
+
+    package是proto的包名,一个文件就是一个package,主要用于命名空间，还用于import时解析
+
+    ```proto
+    package foo;
+    ```
+
+    import的时候
+
+    ```proto
+    import "pfoo/foo.proto"
+    ```
+
+举个例子：
+
+hello/hello.proto
+
+```proto
+syntax = "proto3";
+
+package hello;
+
+option go_package = "/hello";
+
+message Request{
+    string send_message = 1;
+}
+
+message Response{
+    string receive_message = 1;
+}
+
+service Hello{
+    rpc SayHello(Request) returns(Response){}
+}
+```
+
+server/server.go
+
+```Go
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"net"
+
+	pb "github.com/xxxx2077/hello_demo/hello"
+	"google.golang.org/grpc"
+)
+
+type HelloService struct {
+	pb.UnimplementedHelloServer
+}
+
+func (s *HelloService) SayHello(c context.Context, in *pb.Request) (*pb.Response, error) {
+	str := fmt.Sprintf("receive message : %v\n", in.SendMessage)
+	str += "hello, my friend!\n"
+	return &pb.Response{ReceiveMessage: str}, nil
+}
+
+func main() {
+	listener, err := net.Listen("tcp", "localhost:8081")
+	if err != nil {
+		log.Fatal("wrong")
+	}
+	grpcServer := grpc.NewServer()
+	helloService := &HelloService{}
+	pb.RegisterHelloServer(grpcServer, helloService)
+	grpcServer.Serve(listener)
+}
+```
+
+client/clinet.go
+
+```Go
+package main
+
+import (
+	"context"
+	"flag"
+	"fmt"
+	"log"
+
+	pb "github.com/xxxx2077/hello_demo/hello"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+)
+
+func main() {
+	flag.Parse()
+	conn, err := grpc.NewClient("localhost:8081", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatal("wrong conn")
+	}
+	defer conn.Close()
+	client := pb.NewHelloClient(conn)
+	message := &pb.Request{
+		SendMessage: "hello, my name is client",
+	}
+	resp, err := client.SayHello(context.Background(), message)
+	if err != nil {
+		log.Fatal("wrong")
+	}
+	fmt.Println(resp.ReceiveMessage)
+}
+
+```
 
 ## Reference
 
