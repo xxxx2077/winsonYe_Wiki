@@ -368,8 +368,8 @@ nav:
         - algorithm/leetcode/912 排序数组.md
       - 刷题总结:
         - algorithm/leetcode/刷题总结.md
-      - STL:
-        - algorithm/leetcode/STL.md
+    - STL:
+      - algorithm/STL.md
   - 配置:
     - Markdown: configuration/markdown.md
     - 服务器: configuration/server.md

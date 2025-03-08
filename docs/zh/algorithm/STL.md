@@ -63,7 +63,7 @@ bool opeartor < (State& b){
 }
 ```
 
-!!! tip "一句话总结自定义比较函数“
+!!! tip "一句话总结自定义比较函数"
 
 	返回`true`的条件决定元素排布顺序：
 
@@ -145,6 +145,45 @@ struct cmp{
 	}
 };
 ```
+
+??? info "为什么自定义结构体而不是自定义比较函数"
+
+	对于sort，可以使用自定义比较函数
+
+	```C++
+	bool operator()(State&a, State&b){
+		return a.val < b.val;
+	}
+	```
+
+	而为什么`priority_queue`只能使用自定义结构体呢？
+
+	这涉及到[模板类和模板函数]()的知识
+
+	简单来说：
+
+	std::sort 和 std::priority_queue 它们的实现机制不同：
+
+	**std::sort**
+
+	函数模板：std::sort 是一个函数模板，它接受一个比较函数对象作为参数。由于它是函数模板，可以在运行时传递各种类型的比较函数对象（如函数指针、lambda表达式或仿函数）。
+
+	```C++
+	template <typename RandomIt, typename Compare>
+	void sort(RandomIt first, RandomIt last, Compare comp);
+	```
+
+	**std::priority_queue**
+
+	类模板：std::priority_queue 是一个类模板，其第三个模板参数 Compare 需要是一个类型，而不是一个具体的对象或函数指针。这是因为类模板需要在编译期确定所有模板参数的类型信息。
+	
+	```C++
+	template<
+		class T,
+		class Container = std::vector<T>,
+		class Compare = std::less<typename Container::value_type>
+	> class priority_queue;
+	```
 
 ## 二分查找
 
