@@ -55,6 +55,14 @@ bool cmp(State& a, State& b) {
 }
 ```
 
+等价于
+
+```C++
+bool opeartor < (State& b){
+    return this->val > b.val;
+}
+```
+
 !!! tip "一句话总结自定义比较函数“
 
 	返回`true`的条件决定元素排布顺序：
