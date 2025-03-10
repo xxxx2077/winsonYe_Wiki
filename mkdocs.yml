@@ -278,6 +278,7 @@ nav:
         - algorithm/leetcode/21 合并两个升序链表.md
         - algorithm/leetcode/23 合并K个升序链表.md
         - algorithm/leetcode/25 K个一组翻转链表.md
+        - algorithm/leetcode/82 删除排序链表中的重复元素II.md
       - 双指针:
         - algorithm/leetcode/283 移动零.md
         - algorithm/leetcode/128 最长连续序列.md
