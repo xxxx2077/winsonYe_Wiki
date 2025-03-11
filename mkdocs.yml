@@ -351,6 +351,8 @@ nav:
           - algorithm/leetcode/1143 最长公共子序列.md
       - 模拟题:
         - algorithm/leetcode/146 LRU缓存.md
+      - 数学类:
+        - algorithm/leetcode/204 计数质数.md
       - 待分类:
         - algorithm/leetcode/22 括号生成.md
         - algorithm/leetcode/79 单词搜索.md
