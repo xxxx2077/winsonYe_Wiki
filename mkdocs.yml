@@ -228,7 +228,10 @@ nav:
       - 项目:
         - 工程问题: software_development/backend/Project/project_knowledge.md      
         - 逸仙东华资源共享平台: software_development/backend/Project/yxdh.md
-        - 抖音电商: software_development/backend/Project/tiktok_eCommerce.md
+        - 抖音电商: 
+          - software_development/backend/Project/tiktok_eCommerce/index.md
+          - tutorail:
+            - day1_微服务通信: software_development/backend/Project/tiktok_eCommerce/day1_rpc.md
     - 软件测试: 
       - 理论知识: software_development/software_test/software_test_theory.md
   - 数据结构&算法: 
@@ -246,13 +249,15 @@ nav:
       - algorithm/algorithm_summary/index.md
       - 链表: algorithm/algorithm_summary/linkedList.md 
       - 数组: algorithm/algorithm_summary/array.md
-      - 哈希表: aalgorithm/algorithm_summary/hashTable.md
+      - 哈希表: algorithm/algorithm_summary/hashTable.md
     - leetcode刷题笔记:
       - algorithm/leetcode/index.md
       - 数组:
         - 二分查找:
           - algorithm/leetcode/704 二分查找.md
           - algorithm/leetcode/35 搜索插入位置.md
+        - 双指针:
+          - algorithm/leetcode/26 删除有序数组中的重复项.md
         - algorithm/leetcode/27 移除元素.md
         - algorithm/leetcode/977 有序数组的平方.md
         - algorithm/leetcode/209 长度最小的子数组.md
@@ -266,19 +271,30 @@ nav:
         - algorithm/leetcode/41 缺失的第一个正数.md
         - algorithm/leetcode/数组总结.md
       - 链表:
-        - algorithm/leetcode/203 移除链表元素.md
-        - algorithm/leetcode/707 设计链表.md
-        - algorithm/leetcode/206 反转链表.md
-        - algorithm/leetcode/24 两两交换链表中的节点.md
-        - algorithm/leetcode/19 删除链表的第N个节点.md
-        - algorithm/leetcode/876 链表的中间节点.md
-        - algorithm/leetcode/160 相交链表.md
-        - algorithm/leetcode/141 环形链表.md
-        - algorithm/leetcode/142 环形链表II.md
-        - algorithm/leetcode/21 合并两个升序链表.md
-        - algorithm/leetcode/23 合并K个升序链表.md
+        - 链表的基本操作:
+          - algorithm/leetcode/203 移除链表元素.md
+          - algorithm/leetcode/707 设计链表.md
+          - algorithm/leetcode/206 反转链表.md
+          - algorithm/leetcode/24 两两交换链表中的节点.md
+          - algorithm/leetcode/19 删除链表的第N个节点.md
+          - algorithm/leetcode/876 链表的中间节点.md
+          - algorithm/leetcode/160 相交链表.md
+          - algorithm/leetcode/141 环形链表.md
+          - algorithm/leetcode/142 环形链表II.md
+          - algorithm/leetcode/21 合并两个升序链表.md
+          - algorithm/leetcode/23 合并K个升序链表.md
         - algorithm/leetcode/25 K个一组翻转链表.md
-        - algorithm/leetcode/82 删除排序链表中的重复元素II.md
+        - 链表应用:
+          - 链表的分解:
+            - algorithm/leetcode/83 删除排序链表中的重复元素.md
+            - algorithm/leetcode/82 删除排序链表中的重复元素II.md
+          - 链表的合并:
+            - algorithm/leetcode/264 丑数II.md
+            - algorithm/leetcode/378 有序矩阵中第 K 小的元素.md
+            - algorithm/leetcode/373 查找和最小的 K 对数字.md
+          - 链表的运算:
+            - algorithm/leetcode/2 两数相加.md
+            - algorithm/leetcode/445 两数相加II.md
       - 双指针:
         - algorithm/leetcode/283 移动零.md
         - algorithm/leetcode/128 最长连续序列.md
@@ -352,6 +368,9 @@ nav:
       - 模拟题:
         - algorithm/leetcode/146 LRU缓存.md
       - 数学类:
+        - 丑数系列:
+          - algorithm/leetcode/263 丑数.md
+          - algorithm/leetcode/264 丑数II.md
         - algorithm/leetcode/204 计数质数.md
       - 待分类:
         - algorithm/leetcode/22 括号生成.md
@@ -370,6 +389,15 @@ nav:
         - algorithm/leetcode/684 冗余连接.md
         - algorithm/leetcode/739 每日温度.md
         - algorithm/leetcode/912 排序数组.md
+      - 小专题:
+        - 删除有序列表的重复元素:
+          - 思路: algorithm/algorithm_summary/delete_sortedlist_repeated_element.md
+          - algorithm/leetcode/26 删除有序数组中的重复项.md
+          - algorithm/leetcode/83 删除排序链表中的重复元素.md
+          - algorithm/leetcode/82 删除排序链表中的重复元素II.md
+        - 丑数系列:
+          - algorithm/leetcode/263 丑数.md
+          - algorithm/leetcode/264 丑数II.md
       - 刷题总结:
         - algorithm/leetcode/刷题总结.md
     - STL:

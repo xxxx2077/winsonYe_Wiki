@@ -1,6 +1,8 @@
 # 链表
 
-## 遍历链表
+## 基本操作
+
+### 遍历链表
 
 一般我们拥有链表头head就拥有了整个链表，遍历链表时，我们通常保留链表头，创建一个新的指针p指向head，然后开始遍历。否则，我们将丢失head信息，也就丢失链表信息。
 
@@ -14,7 +16,9 @@ while(p != nullptr){
 }
 ```
 
-## 虚拟头节点
+### 链表合并与断开
+
+#### 虚拟头节点
 
 **为什么需要虚拟头节点：** 链表的增和删都需要使用目标节点curNode的前一个节点preNode和下一个节点nextNode，当目标节点恰好是头节点，其没有preNode，需要额外处理。而引入虚拟头节点后，让头节点也有了preNode，所有情况都可以统一处理，不需要额外讨论
 
@@ -27,19 +31,19 @@ if(condition)
     p->next = newNode;
 p = p->next;
 ```
-
-**相关题目：**
-
-- 链表合二为一：[【leetcode 21】合并两个有序链表](../leetcode/21%20合并两个升序链表.md)
-- 原链表一分为二：[【leetcode 86】分隔链表](../leetcode/86)
-- 链表合k为一：[【leetcode 23】合并k个有序链表](../leetcode/23%20合并K个升序链表.md)
     
-
-## 链表拼接
+#### 链表拼接
 
 原链表的节点接到新链表上，而不是 new 新节点来组成新链表的话，需要注意两个操作：
 
-1. 断开节点和原链表之间的链接（[为什么需要断开节点与原链表之间的链接](https://labuladong.online/algo/essential-technique/linked-list-skills-summary/#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%86%E8%A7%A3:~:text=%3B%0A%20%20%20%20%7D%0A%7D%3B-,%E6%88%91%E7%9F%A5%E9%81%93%E6%9C%89%E5%BE%88%E5%A4%9A%E8%AF%BB%E8%80%85%E4%BC%9A%E5%AF%B9%E8%BF%99%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%9C%89%E7%96%91%E9%97%AE%EF%BC%9A,-//%20%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%AE%A9)）。但凡遇到这种情况，就把原链表的节点断开，这样就不会出错了。
+1. 初始化新链表
+
+    ```C++
+    ListNode* dummyNode = new ListNode();
+    ListNOde* p = dummyNode;
+    ```
+
+2. 断开节点和原链表之间的链接（[为什么需要断开节点与原链表之间的链接](https://labuladong.online/algo/essential-technique/linked-list-skills-summary/#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%86%E8%A7%A3:~:text=%3B%0A%20%20%20%20%7D%0A%7D%3B-,%E6%88%91%E7%9F%A5%E9%81%93%E6%9C%89%E5%BE%88%E5%A4%9A%E8%AF%BB%E8%80%85%E4%BC%9A%E5%AF%B9%E8%BF%99%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%9C%89%E7%96%91%E9%97%AE%EF%BC%9A,-//%20%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%AE%A9)）。但凡遇到这种情况，就把原链表的节点断开，这样就不会出错了。
 
     例如：
 
@@ -48,19 +52,22 @@ p = p->next;
     head->next = nullptr;
     ```
 
-2. 原链表继续遍历
+3. 插入节点到新链表
 
-    例如：
     ```C++
-    p1->next = head;
-    p1 = p1->next; //这一步不能漏掉
+    p->next = node;
+    p = p->next; //这一步不能漏掉
     ```
 
 **举个例子：**
 
-- [【leetcode 86】分隔链表](../leetcode/86%20分隔链表.md)
+**相关题目：**
 
-## 双指针
+- 链表合二为一：[【leetcode 21】合并两个有序链表](../leetcode/21%20合并两个升序链表.md)
+- 原链表一分为二：[【leetcode 86】分隔链表](../leetcode/86)
+- 链表合k为一：[【leetcode 23】合并k个有序链表](../leetcode/23%20合并K个升序链表.md)
+
+### 双指针
 
 利用双指针之间的距离，实现一次遍历获得链表的不同位置
 
@@ -70,7 +77,7 @@ p = p->next;
 
 结束时，p1指向链表末尾，p2为目的位置
 
-### 求链表倒数第k个节点
+#### 求链表倒数第k个节点
 
 **求倒数第k个节点：因为p1指向链表末尾，所以p2和p1相距k**
 
@@ -92,8 +99,6 @@ p = p->next;
 
 - [【剑指offer 26】 链表倒数第k个节点](../剑指offer/JZ22%20链表中倒数最后k个节点.md)
 - [【leetcode 19】删除链表的倒数第N个节点](../leetcode/19%20删除链表的第N个节点.md)
-
-### 快慢指针
 
 #### 求链表的中点
 
@@ -120,86 +125,12 @@ return slow;
 
 - [【leetcode 876】链表的中间节点](../leetcode/876%20链表的中间节点.md)
 
-#### 判断链表是否包含环
-
-每当慢指针 slow 前进一步，快指针 fast 就前进两步。
-
-如果 fast 最终能正常走到链表末尾，说明链表中没有环；如果 fast 走着走着竟然和 slow 相遇了，那肯定是 fast 在链表中转圈了，说明链表中含有环。
-
-```C++
-class Solution {
-public:
-    bool hasCycle(ListNode *head) {
-        // 快慢指针初始化指向 head
-        ListNode *slow = head, *fast = head;
-        // 快指针走到末尾时停止
-        while (fast != nullptr && fast->next != nullptr) {
-            // 慢指针走一步，快指针走两步
-            slow = slow->next;
-            fast = fast->next->next;
-            // 快慢指针相遇，说明含有环
-            if (slow == fast) {
-                return true;
-            }
-        }
-        // 不包含环
-        return false;
-    }
-};
-```
+#### 链表与环
 
 **相关题目：**
 
-- [【leetcode 141】环形链表](../leetcode/141%20环形链表.md)
-
-#### 获得环的起点
-
-第一次循环就是[判断是否有环](#判断链表是否包含环)，如果有环，那么接着获得环的起点（[「获得环的起点」原理](https://labuladong.online/algo/essential-technique/linked-list-skills-summary/#%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E7%8E%AF:~:text=%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E6%A0%B7%E5%91%A2%EF%BC%9F%E8%BF%99%E9%87%8C%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%85%B6%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%90%86%E3%80%82)），为此进行第二次循环：判断有环后，让slow指针重新指向头节点，fast和slow指针同时移动一步，直到两者相遇，就是环的起点。
-
-!!! note
-
-    慢指针在进入环之后，慢指针会在一圈内与快指针相遇，这才能证明 k - m 是 head 与环起点的距离。
-
-    关于慢指针会在一圈与快指针相遇，通过数学归纳法可证明，
-
-    1. 快指针与慢指针之间差一步时，继续走，慢指针前进一步，快指针前进2步，两者相遇，
-    2. 快指针与慢指针之间差两步时，继续走，慢指针前进一步，快指针前进2步，两者距离差一步，转化为第一种情况
-    3. 快指针之间差N步，继续走，慢指针前进一步，快指针前进两步，两者之间相差N-1步
-
-    所以，慢指针要走多少步会相遇？走N次，由于初始距离N必然小于环的周长，所以对于慢指针来说，一圈内就能与快指针相遇
-
-```C++
-class Solution {
-public:
-    ListNode* detectCycle(ListNode* head) {
-        ListNode* fast = head;
-        ListNode* slow = head;
-        while (fast != nullptr && fast->next != nullptr) {
-            fast = fast->next->next;
-            slow = slow->next;
-            if (fast == slow) break;
-        }
-        // 上面的代码类似 hasCycle 函数
-        if (fast == nullptr || fast->next == nullptr) {
-            // fast 遇到空指针说明没有环
-            return nullptr;
-        }
-
-        // 重新指向头结点
-        slow = head;
-        // 快慢指针同步前进，相交点就是环起点
-        while (slow != fast) {
-            fast = fast->next;
-            slow = slow->next;
-        }
-        return slow;
-    }
-};
-```
-
-**相关题目：**
-
-- [【leetcode 142】 环形链表II](../leetcode/142%20环形链表II.md)
+- 判断链表是否包含环[【leetcode 141】 环形链表](../leetcode/141%20环形链表.md)
+- 获得环的起点[【leetcode 142】 环形链表II](../leetcode/142%20环形链表II.md)
 
 #### 两个链表是否相交
 
@@ -208,3 +139,149 @@ public:
 **相关题目：**
 
 - [【leetcode 160】 相交链表](../leetcode/160%20相交链表.md)
+
+#### 合并k个升序链表
+
+##### 合并两个有序链表
+
+分解为两个基本操作：
+
+1. 创建新链表
+2. 比较两个链表元素，得出插入到新链表的元素，将其插入到新链表
+
+
+**相关题目：**
+
+- [【leetcode 21】 合并两个有序链表](../leetcode/21%20合并两个升序链表.md)
+
+###### 合并k个升序链表
+
+最直接的想法，每次合并2个升序链表，得到最后的链表。但这种方法时间复杂度很高，合并2个升序链表需要$O(n_1 + n_2)$时间复杂度，$n_i$为第i条有序链表元素个数，合并$n - 1$次（合并两条变成新的一条，新的链表与下一条链表比较），总共$O(n^2)$时间复杂度
+
+我们可以维护一个最小堆，动态维护每个链表头，每次从最小堆取出k条链表的最小值插入到新链表，最小堆只存储k个元素，这一操作时间复杂度为$O(logk)$，一共需要取N次，N为所有链表节点总数，时间复杂度为$O(Nlogk)$
+
+**相关题目：**
+
+- [【leetcode 23】 合并k个有序链表](../leetcode/23%20合并K个升序链表.md)
+
+## 链表应用
+
+### 链表的分解
+
+把重复的元素看成是一个节点，那么删除重复元素，就相当于删除一个元素
+
+注意会不会删除头节点，如果有这种可能，那么引入dummyNode
+
+---
+
+「通用框架」是：
+
+1. slow指向删除节点的前一个节点，也就是未重复链表的最后一个节点；fast指向迭代的节点
+2. fast->val与fast->next->val比较，从而判断重复的元素。这种做法最后会让fast指向最后一个重复元素，根据题意是否要保留重复元素，选择是否要添加一步fast = fast->next
+3. 步骤2之后的fast为删除节点的下一个节点，slow->next = fast实现删除
+4. **注意slow维护的是新链表，因此需要slow->next断开链表末尾**
+
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* dummyNode = new ListNode(-1);
+        dummyNode->next = head;
+        ListNode* slow = dummyNode, *fast = head;
+        while(fast != nullptr){
+            if(fast->next != nullptr && fast->val == fast->next->val){
+                while(fast->next != nullptr && fast->val == fast->next->val){
+                    fast = fast->next;
+                }
+                // fast指向最后一个重复元素
+                // 如果题目不需要保留重复元素，则添加以下代码，让fast再指向下一个元素
+                // fast = fast->next
+            }else{
+                slow->next = fast;
+                slow = slow->next;
+                fast = fast->next;
+            }
+        }
+        // 注意断开链表末尾
+        slow->next = nullptr;
+        return dummyNode->next;
+    }
+};
+```
+
+有时候也可以根据题意不使用通用框架，例如[【leetcode 83】 删除排序链表中的重复元素](../leetcode/83%20删除排序链表中的重复元素.md)保留一个重复元素，那么头节点不会被删除，所以可以不使用dummyNode
+
+<span id="related_questions">**相关题目：**</span>
+
+- [【leetcode 83】 删除排序链表中的重复元素](../leetcode/83%20删除排序链表中的重复元素.md)
+- [【leetcode 82】 删除排序链表中的重复元素 II](../leetcode/82%20删除排序链表中的重复元素II.md)
+
+### 链表的合并
+
+以下题目都可以转换为[合并k条有序链表](../leetcode/23%20合并K个升序链表.md)
+
+#### 丑数II
+
+在[【leetcode 264】 丑数II](../leetcode/264%20丑数II.md)
+
+题目描述
+
+>给你一个整数 n ，请你找出并返回第 n 个 丑数 。
+>丑数 就是质因子只包含 2、3 和 5 的正整数。
+
+可以将丑数分为2的倍数，3的倍数和5的倍数，每种对应一条有序链表
+
+合并三条有序链表得到丑数链表
+
+#### 有序矩阵中第 K 小的元素
+
+在[【leetcode 378】 有序矩阵中第 K 小的元素](../leetcode/378%20有序矩阵中第%20K%20小的元素.md)
+
+题目描述
+
+>
+    给你一个 n x n 矩阵 matrix ，其中每行和每列元素均按升序排序，找到矩阵中第 k 小的元素。
+    
+    请注意，它是 排序后 的第 k 小元素，而不是第 k 个 不同 的元素。
+
+    你必须找到一个内存复杂度优于 O(n2) 的解决方案。
+
+#### 查找和最小的 K 对数字
+
+在[【leetcode 373】 查找和最小的 K 对数字](../leetcode/373%20查找和最小的%20K%20对数字.md)
+
+题目描述
+
+>
+    给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。
+
+    定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。
+
+    请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。
+
+可转换为：
+- 第一条链表: nums1[0]作为数对的第一个元素，剩余nums2的元素作为数对的第二个元素
+- 第二条链表: nums1[1]作为数对的第一个元素，剩余nums2的元素作为数对的第二个元素
+- 以此类推，总共nums1.size()条链表
+- 接着合并这些链表即可
+
+### 链表的运算
+
+如果是逆序存储[【leetcode 2】 两数相加](../leetcode/)，直接遍历链表就是从个位开始的，符合我们计算加法的习惯顺序。
+
+如果是正序存储[【leetcode 445】 两数相加 II](../leetcode/82%20删除排序链表中的重复元素II.md)，那倒要费点脑筋了，可能需要「翻转链表」或者使用「栈」来辅助。
+
+**相关题目：**
+
+- [【leetcode 2】 两数相加](../leetcode/)
+- [【leetcode 445】 两数相加 II](../leetcode/82%20删除排序链表中的重复元素II.md)
