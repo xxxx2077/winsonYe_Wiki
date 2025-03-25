@@ -14,7 +14,13 @@
 
 关于Markdown Image我提一嘴：本人使用mkdocs-material发现图片文件夹取名为".assets_IMG"有显示bug，因此我取名设置为"assets_IMG"
 
-## 开发
+## 前端开发
+
+- HTML CSS Support
+- Live Server
+- Auto Rename Tag
+
+## 后端开发
 
 **必备Plugins:**
 - Docker
