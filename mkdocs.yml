@@ -262,12 +262,11 @@ nav:
           - 应用篇:
             - algorithm/leetcode/875 爱吃香蕉的珂珂.md
             - algorithm/leetcode/1011 在 D 天内送达包裹的能力.md
-            - algorithm/leetcode/35 搜索插入位置.md
         - 双指针:
           - 原地移动元素:
             - algorithm/leetcode/26 删除有序数组中的重复项.md
             - algorithm/leetcode/27 移除元素.md
-            - algorithm/leetcode/283 移动零.md
+            - algorithm/leetcode/410 分割数组的最大值.md
           - 滑动窗口:
             - 思路: algorithm/algorithm_summary/window.md
             - algorithm/leetcode/3 无重复字符的最长子串.md
