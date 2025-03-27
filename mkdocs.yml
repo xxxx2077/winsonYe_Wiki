@@ -254,9 +254,15 @@ nav:
       - algorithm/leetcode/index.md
       - 数组:
         - 二分查找:
-          - algorithm/leetcode/704 二分查找.md
-          - algorithm/leetcode/34 在排序数组中查找元素的第一个和最后一个位置.md
-          - algorithm/leetcode/35 搜索插入位置.md
+          - 思路: algorithm/algorithm_summary/binary_search.md
+          - 基本操作篇:
+            - algorithm/leetcode/704 二分查找.md
+            - algorithm/leetcode/34 在排序数组中查找元素的第一个和最后一个位置.md
+            - algorithm/leetcode/35 搜索插入位置.md
+          - 应用篇:
+            - algorithm/leetcode/875 爱吃香蕉的珂珂.md
+            - algorithm/leetcode/1011 在 D 天内送达包裹的能力.md
+            - algorithm/leetcode/35 搜索插入位置.md
         - 双指针:
           - 原地移动元素:
             - algorithm/leetcode/26 删除有序数组中的重复项.md
