@@ -255,10 +255,20 @@ nav:
       - 数组:
         - 二分查找:
           - algorithm/leetcode/704 二分查找.md
+          - algorithm/leetcode/34 在排序数组中查找元素的第一个和最后一个位置.md
           - algorithm/leetcode/35 搜索插入位置.md
         - 双指针:
-          - algorithm/leetcode/26 删除有序数组中的重复项.md
-        - algorithm/leetcode/27 移除元素.md
+          - 原地移动元素:
+            - algorithm/leetcode/26 删除有序数组中的重复项.md
+            - algorithm/leetcode/27 移除元素.md
+            - algorithm/leetcode/283 移动零.md
+          - 滑动窗口:
+            - 思路: algorithm/algorithm_summary/window.md
+            - algorithm/leetcode/3 无重复字符的最长子串.md
+            - algorithm/leetcode/438 找到字符串中的所有字母异位词.md
+            - algorithm/leetcode/239 滑动窗口的最大值.md
+            - algorithm/leetcode/567 字符串的排列.md
+            - algorithm/leetcode/76 最小覆盖子串.md
         - algorithm/leetcode/977 有序数组的平方.md
         - algorithm/leetcode/209 长度最小的子数组.md
         - algorithm/leetcode/54 螺旋矩阵.md
@@ -305,11 +315,6 @@ nav:
         - algorithm/leetcode/73 矩阵置零.md
         - algorithm/leetcode/48 旋转图像.md
         - algorithm/leetcode/240 搜索二维矩阵II.md
-      - 滑动窗口:
-        - algorithm/leetcode/3 无重复字符的最长子串.md
-        - algorithm/leetcode/438 找到字符串中的所有字母异位词.md
-        - algorithm/leetcode/239 滑动窗口的最大值.md
-        - algorithm/leetcode/76 最小覆盖子串.md
       - 子串:
         - algorithm/leetcode/560 和为k的子数组.md
       - 二叉树:
