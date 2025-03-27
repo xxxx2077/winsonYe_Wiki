@@ -78,6 +78,8 @@ int left_bound(vector<int>& nums, int target){
 }
 ```
 
+如果 target 不存在，搜索左侧边界的二分搜索返回的索引是大于 target 的最小索引。
+
 ## 查找右边界
 
 ```C++
@@ -101,3 +103,4 @@ int right_bound(vector<int>& nums, int target){
     return nums[left - 1] == target ? left - 1 : -1;
 }
 ```
+如果 target 不存在，搜索右侧边界的二分搜索返回的索引是小于 target 的最大索引。
