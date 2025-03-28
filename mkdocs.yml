@@ -408,6 +408,12 @@ nav:
         - 丑数系列:
           - algorithm/leetcode/263 丑数.md
           - algorithm/leetcode/264 丑数II.md
+        - n数之和:
+          - 思路: algorithm/algorithm_summary/nSum.md
+          - algorithm/leetcode/1 两数之和.md
+          - algorithm/leetcode/167 两数之和 II - 输入有序数组.md
+          - algorithm/leetcode/15 三数之和.md
+          - algorithm/leetcode/18 四数之和.md
       - 刷题总结:
         - algorithm/leetcode/刷题总结.md
     - STL:
