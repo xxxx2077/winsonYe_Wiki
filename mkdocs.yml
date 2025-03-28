@@ -274,6 +274,8 @@ nav:
             - algorithm/leetcode/239 滑动窗口的最大值.md
             - algorithm/leetcode/567 字符串的排列.md
             - algorithm/leetcode/76 最小覆盖子串.md
+          - 回文字符串:
+            - algorithm/leetcode/5 最长回文子串.md
         - algorithm/leetcode/977 有序数组的平方.md
         - algorithm/leetcode/209 长度最小的子数组.md
         - algorithm/leetcode/54 螺旋矩阵.md
