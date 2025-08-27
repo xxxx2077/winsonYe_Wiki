@@ -973,6 +973,12 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://xxxx2077.github.io/before_coding/computer_basic/vim/"/>
     </url>
     <url>
+        <loc>https://xxxx2077.github.io/before_coding/web_basic/</loc>
+        <lastmod>2025-08-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://xxxx2077.github.io/before_coding/web_basic/"/>
+    </url>
+    <url>
         <loc>https://xxxx2077.github.io/blog/</loc>
         <lastmod>2025-08-27</lastmod>
         <changefreq>daily</changefreq>
