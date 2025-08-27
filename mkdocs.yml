@@ -181,15 +181,14 @@ nav:
   - Home: index.md
   - 开发: 
     - Before Coding: 
-      - computer_basic/index.md
-      # - 操作系统
-      # - 计算机网络
-      # - 计算机组成原理
-      # - 数据结构与算法
-      - Shell: computer_basic/shell.md
-      - Vim : computer_basic/vim.md
-      - Git: computer_basic/Git.md
-      - Linux: computer_basic/Linux.md 
+      - before_coding/index.md
+      - devTools:
+        - before_coding/computer_basic/index.md
+        - Shell: before_coding/computer_basic/shell.md
+        - Vim: before_coding/computer_basic/vim.md
+        - Git: before_coding/computer_basic/Git.md
+        - VSCode: before_coding/computer_basic/VSCode.md
+      - Linux: before_coding/computer_basic/Linux.md 
     - 前端开发:
       - WebAssembly: software_development/frontend/WebAssembly.md
     - 后端开发: 

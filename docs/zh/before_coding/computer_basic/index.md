@@ -1,10 +1,10 @@
-# Before Coding
+# Before Coding - devTools
 
 本章节源自MIT课程Missing  semester，该课程介绍了很多提高编程效率的工具（例如Vim）
 
 在课程的基础上，我添加了一些我认为很重要的工具
 
-我认为这些工具是程序员必备知识（比编程语言还重要），因此将本章节取名为Before Coding
+我认为这些工具是程序员必备知识（比编程语言还重要），因此将本章节取名为Before Coding - devTools
 
 参考链接：
 
