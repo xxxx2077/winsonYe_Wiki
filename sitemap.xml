@@ -1249,6 +1249,12 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://xxxx2077.github.io/software_development/frontend/WebAssembly/"/>
     </url>
     <url>
+        <loc>https://xxxx2077.github.io/software_development/frontend/browser/</loc>
+        <lastmod>2025-08-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://xxxx2077.github.io/software_development/frontend/browser/"/>
+    </url>
+    <url>
         <loc>https://xxxx2077.github.io/software_development/software_test/software_test_theory/</loc>
         <lastmod>2025-08-27</lastmod>
         <changefreq>daily</changefreq>
