@@ -55,8 +55,19 @@ A tutorial for Markdown & Markdown(Mkdocs of Material)
 
 ## Markdown for Mkdocs
 
-[官方链接](https://squidfunk.github.io/mkdocs-material/reference/admonitions/)
+!!! quote
 
+    [官方链接](https://squidfunk.github.io/mkdocs-material/reference/admonitions/)
+
+!!! warning "踩坑指南"
+
+    mkdocs采用的是python-markdown解释器，它的语法为[python-markdown syntax](https://daringfireball.net/projects/markdown/syntax#precode)
+
+    里面的解析会涉及很多问题，和平常的markdown不一样
+
+    详情见[mkdocs踩坑大全](#mkdocs踩坑大全)
+
+    
 我列举几个我常用的
 
 ### card
@@ -244,4 +255,53 @@ A tutorial for Markdown & Markdown(Mkdocs of Material)
     1. this is a comment.
 
 
-其他功能仍待探索...
+
+### mkdocs踩坑大全
+
+#### 有序列表/无序列表嵌套
+
+!!! bug
+
+    有序列表/无序列表不能嵌套超过两层
+
+
+!!! example 
+
+    例如：
+
+    ```markdown
+    1.  line1
+        
+        -   item1。
+        
+        -   item2
+            
+            1. item_line1
+
+            2. item_line2   
+            
+            3. item_line3
+        
+        -   item3
+    ```
+    效果如下：
+
+    1.  line1
+        
+        -   item1。
+        
+        -   item2
+            
+            1. item_line1
+
+            2. item_line2   
+            
+            3. item_line3
+        
+        -   item3
+
+    你会发现item_line*都变成了代码块，这是因为python-markdown的脑残设定（规定2个tab/8个空格产生代码块），然后我们的有序/无序列表嵌套导致了2个tab/8个空格，因此产生了代码块
+
+!!! success "solution"
+
+    为了避免这种情况，我们能做的只有：减少嵌套层数，控制在两层以内，避免产生2个tab/8个空格
