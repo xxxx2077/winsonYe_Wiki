@@ -190,6 +190,7 @@ nav:
         - VSCode: before_coding/computer_basic/VSCode.md
       - Linux: before_coding/computer_basic/Linux.md 
     - 前端开发:
+      - Browser: software_development/frontend/browser.md
       - WebAssembly: software_development/frontend/WebAssembly.md
     - 后端开发: 
       - software_development/backend/index.md 
