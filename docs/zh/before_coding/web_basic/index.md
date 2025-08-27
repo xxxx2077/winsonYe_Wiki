@@ -1,0 +1,154 @@
+# Before Coding
+
+!!! quote
+
+    本文参考以下学习路线图：
+
+    前端：
+    [roadmap-frontend](https://roadmap.sh/frontend)
+
+    后端：
+    [roadmap-backend](https://roadmap.sh/backend)
+
+## 互联网 Internet
+
+我们的开发世界建立在 **互联网（Internet）** 的基础上，互联网将全世界所有的用户连接在一起。
+
+> The internet is a network of networks.
+
+我们家构建了一个小网络，邻居家也拥有一个小网络，互联网将若干个这样的小网络串联在一起，构筑了Internet。
+
+### 互联网发送信息过程
+
+假设我们想要对其他人发送消息：
+
+1. 首先需要在**自己电脑/手机**上通过 **应用程序** 发送 **数据**
+2. **数据**通过**网络**传输到**其他人的电脑/手机**
+
+这是最简单的传输消息过程，我们对该过程进行细化：
+
+1. 自己电脑/手机可以统称为**终端设备**，即用户使用的设备。我们想要传输信息到指定的设备，需要获取它的`IP Address`，就像在中国找人使用身份证号，`IP Address`是设备的唯一标识。在日常生活中，我们为了方便，不会使用身份证号称呼别人，而是使用名字。因此会有**域名（Domain Name）**。对于人类而言，域名比IP地址好用多了，因此人类平时都会使用域名。但对于计算机而言，IP地址比域名好用，因此需要将域名转换为IP地址，因此有**域名转换系统（Domain Name System, DNS）**
+2. 我们使用的**应用程序**可以分为APP和浏览器（实际上，浏览器也属于APP的一种，后面再解释）
+3. 在网络中传输的 **数据** 需要通信双方约定传输的格式，就像我们写信需要格式一样，否则消息传过去对方看不懂。 **数据传输的约定格式** 我们称之为 **通信协议（protocol）**。
+4. 通信使用的 **网络** 不是简单的网线，中间跨越如此广阔的地域，一定非常复杂。事实上也如此，包括了接入网络、中间设备（路由器router和交换机switches）、核心网络等等。
+
+从以上分析，我们可以抽象出几个核心概念：
+
+- 用户：终端设备与应用程序
+- 网络
+- 网络通信方式：数据组织方式 & 通信协议
+
+我们能够对互联网消息传输的过程进行进一步的解释：
+
+[How Internet works](https://cs.fyi/guide/how-does-internet-work#introduction-to-the-internet:~:text=that%20underpin%20it.-,How%20the%20Internet%20Works%3A%20An%20Overview,-At%20a%20high)
+
+> 在这里我不会涉及过多的细节，比如具体的网络协议有哪些、网络如何传输数据等等，我要做的就是搭建基本的框架。
+
+## 前端、客户端 与 后端
+
+### 前端 & 客户端 & 后端 的区别
+
+软件主要分为CS架构（Client-Server）和BS架构（Browser-Server），两者都有Server端，Server端就是后端，而Client/Browser分别对应客户端和前端。
+
+Server端将整个软件系统的数据进行了统一的管理，这个统一包括统一存储与统一处理。这意味着使用不同的Client，输入相同的信息就能从Server得到相同的结果。 
+
+实际上，BS架构发展历史晚于CS架构，因为Browser本质上就是一种Client Application。所以 前端 其实属于 客户端。
+
+软件的核心是数据，因此我们以数据为切入点，可以发现前后端的不同：
+
+- 前端：负责**浏览器端** 数据的展示和人与数据的交互
+- 后端：负责数据的存储、处理
+
+!!! info "为什么需要前后端分离"
+
+    简单来说，就是软件系统发展得越来越复杂，不同部分的迭代速度不同， 且开发精细度要求越来越高，需要专精人士。 
+    
+    对此我们需要进行 **解耦**。
+
+    [知乎：为什么需要前后端分离](https://www.zhihu.com/question/604811592)
+
+### 前后端交互
+
+前后端交互方式可以以两种方式分类：
+
+1. 第一种：按照交互的抽象程度或粒度（从规定详细的API到模糊的消息再到完全抽象的
+2. 第二种：按照数据流动方式分类
+
+---
+
+#### **分类一：按抽象层级与用途**
+
+按照交互的抽象程度（交互约定细节的细致程度），从细到粗为：
+
+1.  **基于接口的调用 (Interface-Based Invocation)**
+        
+    - **RESTful API :** 将数据看作“资源”（如 `/users`, `/posts`），通过标准HTTP动词操作。
+
+    - **GraphQL API :** 提供一个查询语言，客户端可以精确地“查询”所需的数据结构。     
+        
+    - **RPC (Remote Procedure Call - 远程过程调用) :** 如 gRPC, SOAP。客户端像调用本地函数一样调用远程服务上的函数（如 `getUser(id)`）。
+
+2.  **基于消息的通信 (Message-Based Communication)**
+    
+    -   **WebSocket:** 在建立的连接上，双方发送的都是“消息”。这些消息可以用来实现 API 调用、推送通知或任何自定义协议。
+    -   **WebRTC DataChannel:** 在点对点连接中传输任意数据消息。
+
+3.  **状态与数据传递机制 (State & Data Transfer Mechanisms)**
+    
+    -    **Cookie / Session:** 用于在无状态的HTTP协议上**保持用户会话状态**。Cookie 在请求头中自动传递。
+
+    -   **URL 参数/查询字符串 (`?key=value`):** 一种简单的、将数据从客户端传递到服务器的方式，常用于分页、筛选。
+
+    -   **文件传输:** 一种特定的、大块数据的交互场景，通常通过 `multipart/form-data` 的 HTTP 请求实现。
+
+!!! tip "API"
+
+    API是最主流也是最重要的交互方式。
+
+    想要了解API强烈建议阅读以下文章
+    
+    [API(Application Programming Interface)](https://aws.amazon.com/what-is/api/)
+
+---
+
+#### **分类二：按通信模式（核心维度）**
+
+这是最根本的分类，决定了数据流动的方式。
+
+1.  **请求-响应 (Request-Response)**
+
+    -   **HTTP/HTTPS (RESTful API, GraphQL, 传统AJAX):** 这是最主流的方式。前端通过 `fetch` 或 `axios` 等库发送 GET, POST, PUT, DELETE 等请求。
+
+    -   **文件上传/下载:** 本质上是通过 HTTP POST 请求上传，或通过 HTTP GET 请求下载文件。
+
+2.  **服务器推送 (Server Push)**
+
+    -   **Server-Sent Events (SSE):** 基于 HTTP，服务器可以持续向客户端发送事件流。**单向**（服务器 -> 客户端）。
+
+    -   **WebSocket:** 建立一个全双工的持久连接。虽然连接建立由客户端发起，但连接建立后，**服务器可以随时主动向客户端推送数据**，这是其核心优势之一。
+
+3.  **双向实时通信 (Bidirectional Real-Time)**
+
+    -    **WebSocket:** 是此模式的**绝对代表**。它允许客户端和服务器在任何时候发送消息，非常适合需要频繁、双向交互的应用。
+
+---
+
+## Web开发基础
+
+我们能接触到最多的是网页，即Browser-Server架构。
+
+Browser-Server架构由Client-Server架构发展而来，Browser大大简化了客户端一侧的逻辑，将主要的逻辑和数据处理放在后端。
+
+前端，也就是Web页面，主要的技术栈由三个部分组成：
+
+- HTML：页面结构，决定网页的结构和内容
+- CSS：页面样式，决定网页的表现形式
+- JavaScript：页面行为，决定网页的行为
+
+Web浏览器（Browser）读取HTML文件，并将其作为网页显示。
+
+[浏览器基本使用指南](../software_development/frontend/browser.md)
+
+[HTTP框架](../software_development/backend/Framework/HTTP.md)
+
+请记住：Browser-Server架构的核心是HTTP协议，很多性质都是围绕HTTP展开讨论，比如说request-response model
