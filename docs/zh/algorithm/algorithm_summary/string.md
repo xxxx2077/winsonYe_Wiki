@@ -1,139 +1,273 @@
-# C++字符串的处理
+# 字符串API
 
-## 1. 给定带空格字符串，跳过空格读取单词
+## 取子串`substr()`
 
-例如输入为"Hello world"，分别打印"Hello", "world"
+`substr()` 是 C++ 标准库中 `std::string` 类提供的一个成员函数，用于**提取字符串的子串**。它允许你根据指定的位置和长度从原字符串中获取一个新的字符串。
+
+### 函数原型
+
+```cpp
+string substr (size_t pos = 0, size_t len = npos) const;
+```
+
+- **`pos`**: 子串的起始位置（默认为0）。如果超出字符串的范围，则会抛出 `out_of_range` 异常。
+- **`len`**: 子串的长度（默认为 `npos`，表示直到字符串的末尾）。如果指定的长度超过了实际剩余字符数，则只会返回到字符串末尾的部分。
+
+### 参数说明
+
+- `pos`: 子串开始的位置索引。字符串的第一个字符位置是 0。
+- `len`: 要提取的子串长度。如果省略或超过实际长度，则会提取从 `pos` 开始直到字符串末尾的所有字符。
+
+### 返回值
+
+返回一个新字符串，它是原字符串从 `pos` 开始、长度为 `len` 的子串。
+
+### 示例代码
+
+#### 示例 1：基本用法
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string str = "Hello, World!";
+    
+    // 提取从位置 7 开始，长度为 5 的子串
+    std::string result = str.substr(7, 5);
+    std::cout << "Substring: " << result << std::endl; // 输出: World
+
+    // 如果不指定 len 或者 len 大于剩余长度，则提取到字符串末尾
+    std::string rest = str.substr(7);
+    std::cout << "Rest of the string: " << rest << std::endl; // 输出: World!
+
+    return 0;
+}
+```
+
+#### 示例 2：处理异常情况
+
+如果你尝试使用一个超出字符串长度的起始位置，将会抛出 `std::out_of_range` 异常。因此，在不确定输入的情况下，最好进行边界检查：
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string str = "Hello";
+    
+    try {
+        // 尝试使用超出范围的 pos 值
+        std::string sub = str.substr(10);
+        std::cout << "This will not be printed." << std::endl;
+    } catch (const std::out_of_range& e) {
+        std::cerr << "Error: " << e.what() << std::endl; // 捕获并处理异常
+    }
+
+    return 0;
+}
+```
+
+#### 示例 3：结合其他功能
+
+可以将 `substr()` 与其他字符串操作结合起来使用，比如查找特定字符或子串的位置：
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string text = "The quick brown fox jumps over the lazy dog.";
+    
+    // 查找第一个空格的位置
+    size_t pos = text.find(' ');
+    
+    if (pos != std::string::npos) {
+        // 提取从开头到第一个空格之前的子串
+        std::string firstWord = text.substr(0, pos);
+        std::cout << "First word: " << firstWord << std::endl; // 输出: The
+    }
+
+    return 0;
+}
+```
+
+### 注意事项
+
+1. **越界访问**：确保 `pos` 在字符串的有效范围内。否则，将引发 `std::out_of_range` 异常。
+2. **长度参数**：如果 `len` 超过了从 `pos` 到字符串末尾的实际长度，`substr()` 只会返回从 `pos` 到字符串末尾的部分。
+3. **性能考虑**：`substr()` 创建了一个新的字符串对象，对于非常大的字符串和频繁调用的情况，可能需要考虑内存和性能影响。
+
+## 分割字符串
+
+给出一个字符串，单词与单词之间以空格隔开，取出字符串中的单词
 
 ```C++
 #include <iostream>
-#include <string>
 #include <sstream>
+
 using namespace std;
 
 int main(){
-    string s = "I am a boy";
-    istringstream iss(s);
-    cout << iss.str() << endl;
-    string word;
-    while(iss >> word){
-        cout << word << endl;
+    string input = "hello world from C++ !";
+    istringstream iss(input);
+    vector<string> tokens;
+    string token;
+    while(getline(iss, token, ' ')){
+        if(!token.empty()){
+            tokens.push_back(token);
+        }
+    }
+    for(auto token : tokens){
+        cout << token << endl;
     }
 }
-// output
-// I am a boy
-// I
-// am
-// a
-// boy
 ```
 
-当使用 >> 运算符从 istringstream 对象中提取数据时，它遵循与标准输入流 (cin) 相同的行为规则。这意味着它会自动跳过任何前导空白字符（包括空格、制表符、换行符等），并读取直到下一个空白字符为止的所有字符作为一个单词。因此，无论单词之间有多少个空格，istringstream 都只会识别出一个单词并将其存储在变量 word 中。
-
-!!! info "istringstream & ostringstream & stringstream"
-
-    **istringstream**
-    
-    功能：专门用于从字符串中读取数据。
-    特点：只提供输入操作（类似 cin），你可以从一个字符串中提取数据到变量中。
-    使用场景：当你需要解析一个已有的字符串，并根据某种格式从中提取信息时非常有用。
-
-    ```C++
-    #include <sstream>
-    #include <string>
-
-    std::string str = "123 456";
-    int a, b;
-    std::istringstream iss(str);
-    iss >> a >> b; // a=123, b=456
-    ```
-
-    **ostringstream**
-
-    功能：专门用于向字符串写入数据。
-    特点：只提供输出操作（类似 cout），你可以将数据插入到一个字符串流中，然后将其转换为字符串。
-    使用场景：当你需要构建一个复杂的字符串，尤其是当这个字符串由多个部分组成时很有用。
-
-    ```C++
-    #include <sstream>
-    #include <string>
-
-    std::ostringstream oss;
-    oss << "Name: " << "Alice" << ", Age: " << 28;
-    std::string result = oss.str(); // 结果是 "Name: Alice, Age: 28"
-    ```
-
-    **stringstream**
-
-    功能：同时支持从字符串读取数据和向字符串写入数据。
-    特点：提供了双向操作（即既可以从字符串中提取数据，也可以向字符串中插入数据），结合了 istringstream 和 ostringstream 的功能。
-    使用场景：当你需要对同一个字符串进行读写操作时特别有用。
-    
-    ```C++
-    #include <sstream>
-    #include <string>
-
-    std::stringstream ss;
-    ss << "Hello, "; // 写入
-    ss << "world!";  // 继续写入
-    std::string str = ss.str(); // 获取最终字符串 "Hello, world!"
-
-    // 清除流状态并重置内容
-    ss.clear();
-    ss.str("");
-
-    // 现在可以用来读取
-    ss << "42"; // 再次写入
-    int number;
-    ss >> number; // 提取整数 42
-    ```
-
-## 2. 去除前后空格
-
-C++ string库有以下函数：
-
-- `find_first_of`和`find_first_not_of`
-- `find_last_of`和`find_last_not_of`
-
-以上函数返回size_t类型，即索引。如果不存在，则返回`string::npos`常量(size_t的最大值)
-
-=== "gpt写法"
-
-    ```C++
-    #include <iostream>
-    #include <string>
-    #include <sstream>
-    using namespace std;
-
-    string trim(const string& str){
-        size_t first = str.find_first_not_of(' ');
-        if(string::npos == first)
-            return "";
-        size_t last = str.find_last_not_of(' ');
-        return str.substr(first, last - first + 1);
-    }
-
-    int main(){
-        string s = "   hello, world    ";
-        cout << trim(s) << endl;
-    }
-    ```
-
-=== "我自己双指针写法"
-
-    ```C++
-    int left = 0, right = s.size() - 1;
-    while(s[left] == ' ') left++;
-    while(s[right] == ' ') right--;
-    return s.substr(left, right - left + 1);
-    ```
-
-如果你想要处理不仅仅是空格，还包括制表符、换行符等其他类型的空白字符，可以修改`find_first_not_of`和`find_last_not_of`的参数为一个包含所有你认为是空白字符的集合。例如：
+进一步拓展，不只是空格，给定分割词，对字符串进行分割
 
 ```C++
-const std::string WHITESPACE = " \n\r\t\f\v";
-size_t first = str.find_first_not_of(WHITESPACE);
-size_t last = str.find_last_not_of(WHITESPACE);
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
+vector<string> splitString(const string& input, char delimiter){
+    istringstream iss(input);
+    vector<string> tokens;
+    string token;
+    while(getline(iss, token, delimiter)){
+        if(!token.empty()){
+            tokens.push_back(token);
+        }
+    }
+    return tokens;
+}
+
+int main(){
+    string input = "hello world from C++ !";
+    vector<string> tokens = splitString(input, ' ');
+    for(auto token : tokens){
+        cout << token << endl;
+    }
+
+    string input2 = "hello,world,from,C++,!";
+    tokens = splitString(input2, ',');
+    for(auto token : tokens){
+        cout << token << endl;
+    }
+}
 ```
 
-这样就可以同时去除包括空格在内的其他类型的空白字符。
+## 将大写字母转换为小写字母：`std::tolower`
 
+函数定义在 `<cctype>` 头文件中
+
+### 函数原型：
+```cpp
+int tolower(int c);
+```
+
+- 如果 `c` 是大写字母（A-Z），返回对应的小写形式；
+- 否则返回 `c` 本身。
+
+### 示例代码：
+
+```cpp
+#include <iostream>
+#include <string>
+#include <cctype> // tolower, isalpha
+
+int main() {
+    std::string str = "Hello, WORLD!";
+
+    for (char& ch : str) {
+        ch = std::tolower(static_cast<unsigned char>(ch));
+    }
+
+    std::cout << "转换后: " << str << std::endl;
+
+    return 0;
+}
+```
+
+### 输出：
+```
+转换后: hello, world!
+```
+
+📌 **注意**：  
+- `std::tolower` 接受的是 `int` 类型参数，通常传入 `unsigned char` 强制转换后的值。
+- 避免直接传入 `char`，因为 `char` 可能是负数，在某些平台上会导致未定义行为。
+
+---
+
+## 判断一个字符是否为字母：`std::isalpha`
+
+函数定义在 `<cctype>` 头文件中
+
+### 函数原型：
+```cpp
+int isalpha(int c);
+```
+
+- 如果 `c` 是字母（A-Z 或 a-z），返回非零值（true）；
+- 否则返回 0（false）。
+
+### 示例代码：
+
+```cpp
+#include <iostream>
+#include <string>
+#include <cctype>
+
+int main() {
+    std::string str = "Ab1cD2";
+
+    for (char ch : str) {
+        if (std::isalpha(static_cast<unsigned char>(ch))) {
+            std::cout << ch << " 是字母" << std::endl;
+        } else {
+            std::cout << ch << " 不是字母" << std::endl;
+        }
+    }
+
+    return 0;
+}
+```
+
+### 输出：
+```
+A 是字母
+b 是字母
+1 不是字母
+c 是字母
+D 是字母
+2 不是字母
+```
+
+## 📌 补充说明：C++11 后的字符串处理建议
+
+如果你使用的是现代 C++（如 C++11 或以上），可以结合 `std::transform` 来简化字符串转换过程：
+
+```cpp
+#include <algorithm> // std::transform
+
+std::transform(str.begin(), str.end(), str.begin(),
+    [](unsigned char c){ return std::tolower(c); });
+```
+
+## 判断一个字符是否为字母或数字：`std::isalnum`
+
+`isalnum` 是 C++ 标准库中的一个函数，定义在 <cctype> 头文件中。它用于检查传递给它的字符是否是字母（a-z 或 A-Z）或数字（0-9）。换句话说，`isalnum` 用来判断一个字符是否属于字母数字字符。
+
+函数原型
+
+```cpp
+int isalnum(int c);
+```
+
+- 参数：c 是要检查的字符，通常是一个 unsigned char 类型的值或 EOF。
+- 返回值：
+  - 如果 c 是字母（A-Z, a-z）或数字（0-9），则返回非零值（表示 true）。
+  - 如果 c 不是字母也不是数字，则返回 0（表示 false）。

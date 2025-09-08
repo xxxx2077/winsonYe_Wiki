@@ -251,6 +251,9 @@ nav:
       - 链表: algorithm/algorithm_summary/linkedList.md 
       - 数组: algorithm/algorithm_summary/array.md
       - 哈希表: algorithm/algorithm_summary/hashTable.md
+      - 字符串:
+        - 输入输出: algorithm/algorithm_summary/io.md
+        - 字符串处理: algorithm/algorithm_summary/string.md
     - leetcode刷题笔记:
       - algorithm/leetcode/index.md
       - 处理输入:
