@@ -271,3 +271,38 @@ int isalnum(int c);
 - 返回值：
   - 如果 c 是字母（A-Z, a-z）或数字（0-9），则返回非零值（表示 true）。
   - 如果 c 不是字母也不是数字，则返回 0（表示 false）。
+
+## string类型与int类型相互转换
+
+### int 转换为 string
+使用 std::to_string
+
+```cpp
+#include <string>
+#include <iostream>
+
+int main() {
+    int num = 123;
+    std::string str = std::to_string(num);
+    std::cout << str << std::endl; // 输出: 123
+    return 0;
+}
+```
+
+优点：简洁、安全、无需手动管理内存。
+
+### string 转换为 int
+使用 std::stoi（C++11）
+将字符串转换为整数，返回 int 类型。
+
+```cpp
+#include <string>
+#include <iostream>
+
+int main() {
+    std::string str = "456";
+    int num = std::stoi(str);
+    std::cout << num << std::endl; // 输出: 456
+    return 0;
+}
+```
